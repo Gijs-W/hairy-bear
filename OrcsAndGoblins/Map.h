@@ -6,10 +6,8 @@
 enum class Tile
 {
 	Unused,
-	DirtWall,
-	DirtFloor,
 	Corridor,
-	Door,
+	Room,
 	UpStairs,
 	DownStairs
 };
