@@ -5,11 +5,7 @@ Map *map;
 
 Engine::Engine() {
 
-	int *w = new int;
-	int *h = new int;
-	*w = 70;
-	*h = 40;
-    map = new Map(w, h);
+	map = new Map(40, 70);
 }
 
 Engine::~Engine() {
@@ -19,10 +15,20 @@ Engine::~Engine() {
 
 void Engine::render() {
     // draw the map
-    map->render();
+   // map->render();
 
 }
 
 void Engine::update() {
 
+}
+
+void Engine::loop(){
+	bool getMessage = false;
+	
+	//InputManager* manager = InputManager::getInstance();
+	while (getMessage){
+		this->update();
+		this->render();
+	}
 }

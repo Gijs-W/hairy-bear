@@ -59,5 +59,20 @@ string InputManager::requestInput(string question) {
 	return answer;
 }
 
+InputManager* InputManager::getInstance(){
+	if (instance == nullptr)
+		return new InputManager();
+	else
+		return instance;
+}
+
+InputManager::InputManager(){
+	
+}
+
+InputManager::~InputManager(){
+	delete instance;
+}
+
 
 

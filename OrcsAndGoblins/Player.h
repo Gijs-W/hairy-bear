@@ -6,4 +6,4 @@ public :
  
     Actor(int x, int y, int ch);
     void render() const;
-}
+};
