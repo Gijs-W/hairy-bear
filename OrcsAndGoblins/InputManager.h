@@ -5,13 +5,13 @@ using namespace std;
 class InputManager
 {
 private:
-	bool validateAnswer(string answer, vector<string> *params);
+	bool validateAnswer(string answer, vector<string> *expectedAnswers);
 	InputManager();
 	InputManager* instance;
 public:
 	~InputManager();
 
 	InputManager* getInstance();
-	string requestInput(string question, vector<string> params);
+	string requestInput(string question, vector<string> *expectedAnswers);
 	string requestInput(string question);
 };
