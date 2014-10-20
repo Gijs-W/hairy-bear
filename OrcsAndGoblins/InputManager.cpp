@@ -48,7 +48,6 @@ string InputManager::requestInput(string question, vector<string> *expectedAnswe
 		getline(cin, answer);
 	} while (!validateAnswer(answer,expectedAnswers));
 
-	delete expectedAnswers;
 
 	return answer;
 }

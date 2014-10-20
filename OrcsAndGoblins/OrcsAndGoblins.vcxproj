@@ -81,7 +81,9 @@
   <ItemGroup>
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="EngineState.h" />
     <ClInclude Include="Hero.h" />
+    <ClInclude Include="HeroWalkState.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Map.h" />
@@ -95,6 +97,7 @@
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Hero.cpp" />
+    <ClCompile Include="HeroWalkState.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
