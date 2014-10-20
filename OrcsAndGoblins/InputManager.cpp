@@ -4,13 +4,13 @@
 
 using namespace std;
 
-bool InputManager::validateAnswer(string answer, vector<string> *params) {
+bool InputManager::validateAnswer(string answer, vector<string> *expectedAnswers) {
 	bool found = false;
 
 
-	vector<string>::iterator it = params->begin();
+	vector<string>::iterator it = expectedAnswers->begin();
 
-	while (it != params->end() && !found) {
+	while (it != expectedAnswers->end() && !found) {
 
 		if (*it == answer) {
 			found = true;
@@ -23,13 +23,13 @@ bool InputManager::validateAnswer(string answer, vector<string> *params) {
 }
 
 	
-string InputManager::requestInput(string question, vector<string> params) {
+string InputManager::requestInput(string question, vector<string> *expectedAnswers) {
 
 	string output = question.append(" [");
 
-	for (vector<string>::iterator it = params.begin(); it != params.end(); it++) {
+	for (vector<string>::iterator it = expectedAnswers->begin(); it != expectedAnswers->end(); it++) {
 
-		if (it != params.begin()) {
+		if (it != expectedAnswers->begin()) {
 			output.append(" | ");
 		}
 
@@ -46,7 +46,9 @@ string InputManager::requestInput(string question, vector<string> params) {
 		cout << endl << output << endl;
 
 		getline(cin, answer);
-	} while (!validateAnswer(answer, &params));
+	} while (!validateAnswer(answer,expectedAnswers));
+
+	delete expectedAnswers;
 
 	return answer;
 }
