@@ -18,18 +18,34 @@ Map MapGenerator::generate()
 
 bool MapGenerator::MakeDungeon(Map& map, RngT& rng)
 {
-	MakeRoom(map, rng, x/2, y/2, GetRandomDirection(rng), Tile::Room); //midden in de map een kamer maken
+	MakeRoom(map, rng, x / 2, y / 2, GetRandomDirection(rng), Tile::Room); //midden in de map een kamer maken
 	return false;
 }
 
 bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction direction, Tile tile)
 {
-	map.SetCell(x, y, tile);
-	if (y != 0)
-		MakeRoom(map, rng, x, y - 1, direction, Tile::UndiscoveredRoom);
+	if (map.IsXInBounds(x) && map.IsYInBounds(y))
+	{
+		map.SetCell(x, y, tile);
+		switch (direction)
+		{
+		case(Direction::North) :
+			MakeRoom(map, rng, x, y - 1, GetRandomDirection(rng), Tile::UndiscoveredRoom);
+			break;
+		case(Direction::South) :
+			MakeRoom(map, rng, x, y + 1, GetRandomDirection(rng), Tile::UndiscoveredRoom);
+			break;
+		case(Direction::East) :
+			MakeRoom(map, rng, x + 1, y, GetRandomDirection(rng), Tile::UndiscoveredRoom);
+			break;
+		case(Direction::West) :
+			MakeRoom(map, rng, x - 1, y, GetRandomDirection(rng), Tile::UndiscoveredRoom);
+			break;
+		}
+	}
 	//doe iets met description;
 	return false;
-	
+
 }
 
 bool MapGenerator::MakeStairs(Map& map, RngT& rng, Tile tile)

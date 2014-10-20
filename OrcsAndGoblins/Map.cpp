@@ -82,9 +82,9 @@ bool Map::IsAdjacent(int x, int y, Tile tile)
 
 void Map::Print() const
 {
-	for (int i = 0; i < xSize; i++)
+	for (int j = 0; j < ySize; j++)
 	{
-		for (int j = 0; j < ySize; j++)
+		for (int i = 0; i < xSize; i++)
 		{
 			Tile t = GetCell(i, j);
 			switch (t)
@@ -100,6 +100,7 @@ void Map::Print() const
 				break;
 			}
 		}
+		std::cout << std::endl;
 	}
 }
 
