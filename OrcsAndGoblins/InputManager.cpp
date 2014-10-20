@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-
+InputManager *InputManager::instance = nullptr;
 bool InputManager::validateAnswer(string answer, vector<string> *expectedAnswers) {
 	bool found = false;
 
@@ -61,11 +61,11 @@ string InputManager::requestInput(string question) {
 	return answer;
 }
 
-InputManager* InputManager::getInstance(){
-	if (instance == nullptr)
-		return new InputManager();
-	else
-		return instance;
+InputManager* InputManager::getInstance() {
+	if (InputManager::instance == nullptr) {
+		InputManager::instance = new InputManager;
+	}
+	return InputManager::instance;
 }
 
 InputManager::InputManager(){
