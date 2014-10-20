@@ -56,6 +56,7 @@ string InputManager::requestInput(string question, vector<string> *expectedAnswe
 string InputManager::requestInput(string question) {
 	string answer = "";
 
+	cout << question << endl;
 	getline(cin, answer);
 
 	return answer;
