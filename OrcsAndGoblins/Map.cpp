@@ -89,14 +89,20 @@ void Map::Print() const
 			Tile t = GetCell(i, j);
 			switch (t)
 			{
+			case(Tile::CorridorVertical) :
+				printf("|"); 
+				break;
+			case(Tile::CorridorHorizontal) :
+				printf("-");
+				break;
 			case(Tile::Unused) :
-				printf("x");
+				printf(".");
 				break;
 			case(Tile::Room) :
 				printf("0");
 				break;
 			case(Tile::UndiscoveredRoom) :
-				printf(".");
+				printf("O");
 				break;
 			}
 		}

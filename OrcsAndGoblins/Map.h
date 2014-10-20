@@ -10,7 +10,9 @@ enum class Tile
 	UndiscoveredRoom,
 	UpStairs,
 	DownStairs,
-	UndiscoveredStairs
+	UndiscoveredStairs,
+	CorridorHorizontal,
+	CorridorVertical
 };
 
 enum class Direction
