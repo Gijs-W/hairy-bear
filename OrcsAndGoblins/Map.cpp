@@ -80,6 +80,29 @@ bool Map::IsAdjacent(int x, int y, Tile tile)
 		GetCell(x, y - 1) == tile || GetCell(x, y + 1) == tile;
 }
 
+void Map::Print() const
+{
+	for (int i = 0; i < xSize; i++)
+	{
+		for (int j = 0; j < ySize; j++)
+		{
+			Tile t = GetCell(i, j);
+			switch (t)
+			{
+			case(Tile::Unused) :
+				printf("x");
+				break;
+			case(Tile::Room) :
+				printf("0");
+				break;
+			case(Tile::UndiscoveredRoom) :
+				printf(".");
+				break;
+			}
+		}
+	}
+}
+
 int xSize, ySize;
  
 std::vector<Tile> data;

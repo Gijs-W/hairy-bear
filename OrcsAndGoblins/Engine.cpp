@@ -1,16 +1,13 @@
 #include "stdafx.h"
 #include "Engine.h"
-#include "Map.h"
-Map *map;
+#include "MapGenerator.h"
 
 Engine::Engine() {
 
-	map = new Map(40, 70);
 }
 
 Engine::~Engine() {
     //actors.clearAndDelete();
-    delete map;
 }
 
 void Engine::render() {
@@ -25,7 +22,8 @@ void Engine::update() {
 
 void Engine::loop(){
 	bool getMessage = false;
-	
+	MapGenerator *m = new MapGenerator();
+	m->generate();
 	//InputManager* manager = InputManager::getInstance();
 	while (getMessage){
 		this->update();

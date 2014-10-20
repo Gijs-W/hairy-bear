@@ -6,10 +6,11 @@
 enum class Tile
 {
 	Unused,
-	Corridor,
 	Room,
+	UndiscoveredRoom,
 	UpStairs,
-	DownStairs
+	DownStairs,
+	UndiscoveredStairs
 };
 
 enum class Direction
@@ -30,6 +31,7 @@ public:
 	bool IsAreaUnused(int xStart, int yStart, int xEnd, int yEnd);
 	bool IsAdjacent(int x, int y, Tile tile);
 	void Print() const;
+
 
 private:
 	int xSize, ySize;
