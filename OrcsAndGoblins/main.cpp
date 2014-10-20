@@ -3,6 +3,7 @@
 int main()
 {
 	Engine *engine = new Engine();
+	engine->initHero();
 	engine->loop();
 	return 0;
 }

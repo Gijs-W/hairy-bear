@@ -5,12 +5,13 @@ Map *map;
 
 Engine::Engine() {
 
-	map = new Map(40, 70);
+	//map = new Map(40, 70);
 }
 
 Engine::~Engine() {
     //actors.clearAndDelete();
     delete map;
+	delete m_hero;
 }
 
 void Engine::render() {
@@ -20,6 +21,13 @@ void Engine::render() {
 }
 
 void Engine::update() {
+
+}
+
+void Engine::initHero() {
+	string name = InputManager::getInstance()->requestInput("Voer de naam van je hero in:");
+	m_hero = new Hero;
+	m_hero->setName(name);
 
 }
 

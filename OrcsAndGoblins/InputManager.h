@@ -7,11 +7,11 @@ class InputManager
 private:
 	bool validateAnswer(string answer, vector<string> *expectedAnswers);
 	InputManager();
-	InputManager* instance;
+	static InputManager* instance;
 public:
 	~InputManager();
 
-	InputManager* getInstance();
+	static InputManager* getInstance();
 	string requestInput(string question, vector<string> *expectedAnswers);
 	string requestInput(string question);
 };
