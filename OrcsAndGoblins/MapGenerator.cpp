@@ -25,22 +25,26 @@ bool MapGenerator::MakeDungeon(Map& map, RngT& rng)
 bool MapGenerator::MakeCorridor(Map& map, RngT& rng, int x, int y, Direction direction)
 {
 	if (map.IsXInBounds(x) && map.IsYInBounds(y) && map.IsXInBounds(x + 1) && map.IsYInBounds(y + 1) 
-		&& map.IsXInBounds(x -1) && map.IsYInBounds(y -1))
+		&& map.IsXInBounds(x -1) && map.IsYInBounds(y - 1))
 	{
-		switch (direction)
+		if (map.GetCell(x + 1, y) != Tile::RoomCorridor && map.GetCell(x - 1, y) != Tile::RoomCorridor
+			&& map.GetCell(x, y + 1) != Tile::RoomCorridor && map.GetCell(x, y - 1) != Tile::RoomCorridor)
 		{
-		case(Direction::North) :
-			map.SetCell(x, y, Tile::CorridorVertical);
-			break;
-		case(Direction::South) :
-			map.SetCell(x, y, Tile::CorridorVertical);
-			break;
-		case(Direction::East) :
-			map.SetCell(x, y, Tile::CorridorHorizontal);
-			break;
-		case(Direction::West) :
-			map.SetCell(x, y, Tile::CorridorHorizontal);
-			break;
+			switch (direction)
+			{
+			case(Direction::North) :
+				map.SetCell(x, y, Tile::CorridorVertical);
+				break;
+			case(Direction::South) :
+				map.SetCell(x, y, Tile::CorridorVertical);
+				break;
+			case(Direction::East) :
+				map.SetCell(x, y, Tile::CorridorHorizontal);
+				break;
+			case(Direction::West) :
+				map.SetCell(x, y, Tile::CorridorHorizontal);
+				break;
+			}
 		}
 	}
 	return false;
@@ -57,7 +61,7 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 		{
 			int rand = std::uniform_int_distribution<int>(0, chanceRoom + chanceCorridor)(rng);
 
-			if (chanceRoom > 1)
+			if (chanceRoom > rand)
 			{
 				direction = GetRandomDirection(rng);
 				map.SetCell(x, y, type);
@@ -95,23 +99,7 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 			}
 			else
 			{
-
-				map.SetCell(x, y, type);
-				//switch (direction)
-				//{
-				//case(Direction::North) :
-				//	MakeRoom(map, rng, x, y - 1, GetRandomDirection(rng), Tile::UndiscoveredRoom);
-				//	break;
-				//case(Direction::South) :
-				//	MakeRoom(map, rng, x, y + 1, GetRandomDirection(rng), Tile::UndiscoveredRoom);
-				//	break;
-				//case(Direction::East) :
-				//	MakeRoom(map, rng, x + 1, y, GetRandomDirection(rng), Tile::UndiscoveredRoom);
-				//	break;
-				//case(Direction::West) :
-				//	MakeRoom(map, rng, x - 1, y, GetRandomDirection(rng), Tile::UndiscoveredRoom);
-				//	break;
-				//}
+				map.SetCell(x, y, Tile::RoomCorridor);
 			}
 		}
 	}

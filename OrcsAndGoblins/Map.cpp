@@ -80,6 +80,9 @@ void Map::Print() const
 			case(Tile::UndiscoveredRoom) :
 				printf("O");
 				break;
+			case(Tile::RoomCorridor) :
+				printf("x");
+				break;
 			}
 		}
 		std::cout << std::endl;

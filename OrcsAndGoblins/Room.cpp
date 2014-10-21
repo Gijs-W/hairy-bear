@@ -1,8 +1,12 @@
 #include "stdafx.h"
 #include "Room.h"
 
-
 Room::Room()
+{
+	corridors = new std::vector<MapType*>();
+}
+
+Room::Room(Tile type) : type(type)
 {
 	corridors = new std::vector<MapType*>();
 }

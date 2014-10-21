@@ -5,6 +5,7 @@ class Room : public MapType
 {
 public:
 	Room();
+	Room(Tile type);
 	virtual ~Room();
 
 	std::string getDescription();
