@@ -46,9 +46,9 @@ bool MapGenerator::MakeCorridor(Map& map, RngT& rng, int x, int y, Direction dir
 	return false;
 }
 
-bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction direction, Tile tile)
+bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction direction, Tile type)
 {
-	int maxTries = 3;
+	int maxTries = 4;
 	int curTries = 1;
 
 	if (map.IsXInBounds(x) && map.IsYInBounds(y))
@@ -60,7 +60,7 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 			if (chanceRoom > 1)
 			{
 				direction = GetRandomDirection(rng);
-				map.SetCell(x, y, tile);
+				map.SetCell(x, y, type);
 				switch (direction)
 				{
 				case(Direction::North) :
@@ -96,7 +96,7 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 			else
 			{
 
-				map.SetCell(x, y, tile);
+				map.SetCell(x, y, type);
 				//switch (direction)
 				//{
 				//case(Direction::North) :

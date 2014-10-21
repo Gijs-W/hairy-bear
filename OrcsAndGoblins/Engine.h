@@ -15,7 +15,7 @@ public :
     Map* map;
  
     Engine();
-    ~Engine();
+    virtual ~Engine();
     void update();
     void render();
 	void initHero();

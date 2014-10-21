@@ -3,6 +3,6 @@ class main
 {
 public:
 	main();
-	~main();
+	virtual ~main();
 };
 

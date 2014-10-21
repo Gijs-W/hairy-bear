@@ -2,18 +2,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <vector>
-
-enum class Tile
-{
-	Unused,
-	Room,
-	UndiscoveredRoom,
-	UpStairs,
-	DownStairs,
-	UndiscoveredStairs,
-	CorridorHorizontal,
-	CorridorVertical
-};
+#include "Room.h"
 
 enum class Direction
 {
@@ -24,10 +13,10 @@ class Map
 {
 public:
 	Map();
+	virtual ~Map();
 	Map(int x, int y, Tile value = Tile::Unused);
-	void SetCell(int x, int y, Tile celltype);
+	void SetCell(int x, int y, Tile type);
 	Tile GetCell(int x, int y) const;
-	void SetCells(int xStart, int yStart, int xEnd, int yEnd, Tile cellType);
 	bool IsXInBounds(int x) const;
 	bool IsYInBounds(int y) const;
 	bool IsAreaUnused(int xStart, int yStart, int xEnd, int yEnd);
@@ -37,7 +26,8 @@ public:
 
 private:
 	int xSize, ySize;
- 
+	std::vector<MapType> rooms;
+	std::vector<MapType> stairs;
 	std::vector<Tile> data;
 };
 

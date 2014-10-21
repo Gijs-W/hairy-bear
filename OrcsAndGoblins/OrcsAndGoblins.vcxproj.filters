@@ -63,6 +63,9 @@
     <ClInclude Include="HeroWalkState.h">
       <Filter>Header Files\EngineState</Filter>
     </ClInclude>
+    <ClInclude Include="MapType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -100,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="HeroWalkState.cpp">
       <Filter>Source Files\EngineState</Filter>
+    </ClCompile>
+    <ClCompile Include="MapType.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

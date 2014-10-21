@@ -14,13 +14,18 @@ Map::Map(int x, int y, Tile value):	xSize(x), ySize(y),	data(x * y, value)
 
 }
 
+Map::~Map()
+{
 
-void Map::SetCell(int x, int y, Tile celltype)
+}
+
+
+void Map::SetCell(int x, int y, Tile type)
 {
 	assert(IsXInBounds(x));
 	assert(IsYInBounds(y));
 
-	data[x + xSize * y] = celltype;
+	data[x + xSize * y] = type;
 }
 
 Tile Map::GetCell(int x, int y) const
@@ -31,19 +36,6 @@ Tile Map::GetCell(int x, int y) const
 	return data[x + xSize * y];
 }
 
-void Map::SetCells(int xStart, int yStart, int xEnd, int yEnd, Tile cellType)
-{
-	assert(IsXInBounds(xStart) && IsXInBounds(xEnd));
-	assert(IsYInBounds(yStart) && IsYInBounds(yEnd));
-
-	assert(xStart <= xEnd);
-	assert(yStart <= yEnd);
-
-	for (auto y = yStart; y != yEnd + 1; ++y)
-		for (auto x = xStart; x != xEnd + 1; ++x)
-			SetCell(x, y, cellType);
-}
-
 bool Map::IsXInBounds(int x) const
 {
 	return x >= 0 && x < xSize;
@@ -52,22 +44,6 @@ bool Map::IsXInBounds(int x) const
 bool Map::IsYInBounds(int y) const
 {
 	return y >= 0 && y < ySize;
-}
-
-bool Map::IsAreaUnused(int xStart, int yStart, int xEnd, int yEnd)
-{
-	assert(IsXInBounds(xStart) && IsXInBounds(xEnd));
-	assert(IsYInBounds(yStart) && IsYInBounds(yEnd));
-
-	assert(xStart <= xEnd);
-	assert(yStart <= yEnd);
-
-	for (auto y = yStart; y != yEnd + 1; ++y)
-		for (auto x = xStart; x != xEnd + 1; ++x)
-			if (GetCell(x, y) != Tile::Unused)
-				return false;
-
-	return true;
 }
 
 bool Map::IsAdjacent(int x, int y, Tile tile)
