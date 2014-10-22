@@ -24,27 +24,34 @@ bool MapGenerator::MakeDungeon(Map& map, RngT& rng)
 
 bool MapGenerator::MakeCorridor(Map& map, RngT& rng, int x, int y, Direction direction)
 {
-	if (map.IsXInBounds(x) && map.IsYInBounds(y) && map.IsXInBounds(x + 1) && map.IsYInBounds(y + 1) 
-		&& map.IsXInBounds(x -1) && map.IsYInBounds(y - 1))
+	if (map.IsXInBounds(x) && map.IsYInBounds(y))
 	{
-		if (map.GetCell(x + 1, y) != Tile::RoomCorridor && map.GetCell(x - 1, y) != Tile::RoomCorridor
-			&& map.GetCell(x, y + 1) != Tile::RoomCorridor && map.GetCell(x, y - 1) != Tile::RoomCorridor)
+		switch (direction)
 		{
-			switch (direction)
+		case(Direction::North) :
+			if (map.IsYInBounds(y - 1) && map.IsXInBounds(x))
 			{
-			case(Direction::North) :
 				map.SetCell(x, y, Tile::CorridorVertical);
-				break;
-			case(Direction::South) :
-				map.SetCell(x, y, Tile::CorridorVertical);
-				break;
-			case(Direction::East) :
-				map.SetCell(x, y, Tile::CorridorHorizontal);
-				break;
-			case(Direction::West) :
-				map.SetCell(x, y, Tile::CorridorHorizontal);
-				break;
 			}
+			break;
+		case(Direction::South) :
+			if (map.IsYInBounds(y + 1) && map.IsXInBounds(x))
+			{
+				map.SetCell(x, y, Tile::CorridorVertical);
+			}
+			break;
+		case(Direction::East) :
+			if (map.IsXInBounds(x + 1) && map.IsYInBounds(y))
+			{
+				map.SetCell(x, y, Tile::CorridorHorizontal);
+			}
+			break;
+		case(Direction::West) :
+			if (map.IsXInBounds(x - 1) && map.IsYInBounds(y))
+			{
+				map.SetCell(x, y, Tile::CorridorHorizontal);
+			}
+			break;
 		}
 	}
 	return false;
