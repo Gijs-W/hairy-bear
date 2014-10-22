@@ -4,6 +4,7 @@ enum class Tile {
 	Room,
 	UndiscoveredRoom,
 	RoomCorridor,
+	UndiscoveredRoomCorridor,
 	CorridorVertical,
 	CorridorHorizontal,
 	Unused,

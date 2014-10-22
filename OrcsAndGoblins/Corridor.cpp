@@ -6,7 +6,7 @@ Corridor::Corridor()
 {
 }
 
-Corridor::Corridor(Tile tile) : type(tile)
+Corridor::Corridor(MapType* source, MapType* target) : source(source), target(target)
 {
 
 }

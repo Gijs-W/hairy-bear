@@ -24,10 +24,11 @@ public:
 	bool IsYInBounds(int y) const;
 	bool IsAreaUnused(int xStart, int yStart, int xEnd, int yEnd);
 	bool IsAdjacent(int x, int y, Tile tile);
+	void checkEndRooms();
 	void Print() const;
 	MapType* makeRoom(Tile tile, int x, int y);
 	MapType* makeStairs(int x, int y);
-	MapType* makeCorridor(int x, int y, MapType* room, Direction direction);
+	MapType* makeCorridor(int x, int y, MapType* sourceRoom, MapType* targetRoom, Direction direction);
 	MapType* makeUnused(int x, int y);
 private:
 	bool checkIfEntityExists(MapType* type);

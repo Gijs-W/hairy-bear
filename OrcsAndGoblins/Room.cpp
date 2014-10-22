@@ -50,3 +50,8 @@ void Room::setType(Tile tile)
 {
 	type = tile;
 }
+
+Tile Room::getType()
+{
+	return type;
+}

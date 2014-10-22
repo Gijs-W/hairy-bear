@@ -153,16 +153,38 @@ MapType* Map::makeUnused(int x, int y)
 //}
 //
 
-MapType* Map::makeCorridor(int x, int y, MapType* room, Direction direction)
+void Map::checkEndRooms()
 {
-	MapType *corridor = new Corridor(Tile::CorridorHorizontal);
+	for (int i = 0; i < rooms->size(); i++)
+	{
+		MapType *r = rooms->at(i);
+
+		Room* room = dynamic_cast<Room*>(r);
+		if (room)
+		{
+			if (room->getCorridors()->size() == 1)
+			{
+				room->setType(Tile::UndiscoveredRoomCorridor);
+			}
+		}
+	}
+}
+
+MapType* Map::makeCorridor(int x, int y, MapType* sourceRoom, MapType* targetRoom, Direction direction)
+{
+	MapType *corridor = new Corridor(sourceRoom, targetRoom);
 	corridor->setX(x);
 	corridor->setY(y);
 
 	//dynamic casting :(
-	Room* r = dynamic_cast<Room*>(room);
-	if (r)
-		r->addCorridor(corridor);
+	Room* r1 = dynamic_cast<Room*>(sourceRoom);
+	if (r1)
+		r1->addCorridor(corridor);
+
+	Room* r2 = dynamic_cast<Room*>(targetRoom);
+	if (r2)
+		r2->addCorridor(corridor);
+
 
 	switch (direction)
 	{
@@ -173,10 +195,10 @@ MapType* Map::makeCorridor(int x, int y, MapType* room, Direction direction)
 			corridor->setType(Tile::CorridorVertical);
 			break;
 		case(Direction::East) :
-			corridor->setType(Tile::CorridorVertical);
+			corridor->setType(Tile::CorridorHorizontal);
 			break;
 		case(Direction::West) :
-			corridor->setType(Tile::CorridorVertical);
+			corridor->setType(Tile::CorridorHorizontal);
 			break;
 	}
 
@@ -221,6 +243,9 @@ void Map::Print() const
 						break;
 					case(Tile::RoomCorridor) :
 						printf("x");
+						break;
+					case(Tile::UndiscoveredRoomCorridor) :
+						printf("y");
 						break;
 					}
 				}

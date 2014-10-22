@@ -13,11 +13,12 @@ public:
 	void addCorridor(MapType* corridor);
 	void setVisited(bool visit);
 	bool getVisited();
+	void setType(Tile tile);
+	Tile getType();
 private:
 	bool visited;
 	Tile type;
 	std::string description;
 	std::vector<MapType*>* corridors;
-	void setType(Tile tile);
 };
 

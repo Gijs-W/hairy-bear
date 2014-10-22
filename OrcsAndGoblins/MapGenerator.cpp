@@ -18,7 +18,9 @@ Map MapGenerator::generate()
 
 bool MapGenerator::MakeDungeon(Map& map, RngT& rng)
 {
-	MakeRoom(map, rng, x / 2, y / 2, GetRandomDirection(rng), Tile::Room); //midden in de map een kamer maken
+	MakeFirstRoomInDungeon(map, rng, x / 2, y / 2, Tile::Room);
+	map.checkEndRooms();
+	//MakeRoom(map, rng, x / 2, y / 2, GetRandomDirection(rng), Tile::Room); //midden in de map een kamer maken
 	return false;
 }
 
@@ -57,10 +59,26 @@ bool MapGenerator::MakeCorridor(Map& map, RngT& rng, int x, int y, Direction dir
 	return false;
 }
 
-bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction direction, Tile type)
+bool MapGenerator::MakeFirstRoomInDungeon(Map& map, RngT& rng, int x, int y, Tile type)
 {
 	int maxTries = 4;
-	int curTries = 1;
+
+	if (map.IsXInBounds(x) && map.IsYInBounds(y))
+	{
+		MapType *room = map.makeRoom(type, x, y);
+		for (int i = 1; i < maxTries; i++)
+		{
+			map.SetCell(x, y, Tile::Room);
+			MakeRoom(map, rng, x, y, GetRandomDirection(rng), Tile::UndiscoveredRoom, room);
+		}
+	}
+
+	return false;
+}
+
+bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction direction, Tile type, MapType* sourceRoom)
+{
+	int maxTries = 4; // magic number
 
 	if (map.IsXInBounds(x) && map.IsYInBounds(y))
 	{
@@ -68,48 +86,52 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 		{
 			int rand = std::uniform_int_distribution<int>(0, chanceRoom + chanceCorridor)(rng);
 
-			if (chanceRoom > 1)
+			if (chanceRoom > rand)
 			{
-				direction = GetRandomDirection(rng);
+				Direction direction = GetRandomDirection(rng);
 				switch (direction)
 				{
 				case(Direction::North) :
 					if (checkIfUnused(map, x, y - 2))
 					{
+						map.SetCell(x, y -2 , Tile::UndiscoveredRoom);
 						MapType *room = map.makeRoom(type, x, y - 2);
-						MapType *corridor = map.makeCorridor(x, y - 1, room, direction);
-						/*map.SetCell(x, y, type);
-						MakeCorridor(map, rng, x, y - 1, direction);
-						MakeRoom(map, rng, x, y - 2, GetRandomDirection(rng), Tile::UndiscoveredRoom);*/
+						MapType *corridor = map.makeCorridor(x, y - 1, sourceRoom, room, direction);
+						MakeRoom(map, rng, x, y - 2, GetRandomDirection(rng), Tile::UndiscoveredRoom, room);
 					}
 					break;
-				}
-		/*		case(Direction::South) :
+				case(Direction::South) :
 					if (checkIfUnused(map, x, y + 2))
 					{
-						map.SetCell(x, y, type);
-						MakeCorridor(map, rng, x, y + 1, direction);
-						MakeRoom(map, rng, x, y + 2, GetRandomDirection(rng), Tile::UndiscoveredRoom);
+						map.SetCell(x, y + 2, Tile::UndiscoveredRoom);
+						MapType *room = map.makeRoom(type, x, y + 2);
+						MapType *corridor = map.makeCorridor(x, y + 1, sourceRoom, room, direction);
+						MakeRoom(map, rng, x, y + 2, GetRandomDirection(rng), Tile::UndiscoveredRoom, room);
 					}
 					break;
-				case(Direction::East) :
-					if (checkIfUnused(map, x + 2, y))
-					{
-						map.SetCell(x, y, type);
-						MakeCorridor(map, rng, x + 1, y, direction);
-						MakeRoom(map, rng, x + 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom);
+					case(Direction::East) :
+						if (checkIfUnused(map, x + 2, y))
+						{
+							map.SetCell(x + 2, y, Tile::UndiscoveredRoom);
+							MapType *room = map.makeRoom(type, x + 2, y);
+							MapType *corridor = map.makeCorridor(x + 1, y, sourceRoom, room, direction);
+							MakeRoom(map, rng, x + 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom, room);
+						}
+						break;
+					case(Direction::West) :
+						if (checkIfUnused(map, x - 2, y))
+						{
+							map.SetCell(x - 2, y, Tile::UndiscoveredRoom);
+							MapType *room = map.makeRoom(type, x - 2, y);
+							MapType *corridor = map.makeCorridor(x - 1, y, sourceRoom, room, direction);
+							MakeRoom(map, rng, x - 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom, room);
+						}
+						break;
 					}
-					break;
-				case(Direction::West) :
-					if (checkIfUnused(map, x - 2, y))
-					{
-						map.SetCell(x, y, type);
-						MakeCorridor(map, rng, x - 1, y, direction);
-						MakeRoom(map, rng, x - 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom);
-					}
-					break;
-				}*/
+				
 			}
+			//else
+			//	return false;
 		}
 	}
 	//doe iets met description;
