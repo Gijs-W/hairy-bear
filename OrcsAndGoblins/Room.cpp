@@ -14,12 +14,12 @@ Room::Room(Tile type) : type(type)
 
 Room::~Room()
 {
-	for (int i = corridors->size(); i >= 0; i--)
-	{
-		MapType *c = corridors->at(i);
-		delete c;
-	}
-	delete corridors;
+	//for (int i = corridors->size(); i >= 0; i--)
+	//{
+	//	MapType *c = corridors->at(i);
+	//	delete c;
+	//}
+	//delete corridors;
 }
 
 void Room::addCorridor(MapType* corridor)

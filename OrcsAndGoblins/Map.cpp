@@ -22,7 +22,37 @@ Map::Map(int x, int y, Tile value):	xSize(x), ySize(y),	data(x * y, value)
 
 Map::~Map()
 {
+	//for (int i = 0; i < allEntities->size(); i++)
+	//{
+	//	delete allEntities->at(i);
+	//}
+	//delete allEntities;
 
+	//cant do this yet
+	/*for (int i = 0; i < rooms->size(); i++)
+	{
+		delete rooms->at(i);
+	}
+	delete rooms;
+
+	for (int i = 0; i < stairs->size(); i++)
+	{
+		delete stairs->at(i);
+	}
+	delete stairs;
+
+	for (int i = 0; i < unuseds->size(); i++)
+	{
+		delete unuseds->at(i);
+	}
+	delete unuseds;
+
+	for (int i = 0; i < corridors->size(); i++)
+	{
+		delete corridors->at(i);
+	}
+	delete corridors;*/
+	
 }
 
 
@@ -117,15 +147,47 @@ MapType* Map::makeUnused(int x, int y)
 	return unused;
 }
 //
-//MapType Map::makeStairs(int x, int y);
+//MapType Map::makeStairs(int x, int y)
 //{
 //
 //}
 //
-//MapType Map::makeCorridor(int x, int y);
-//{
-//
-//}
+
+MapType* Map::makeCorridor(int x, int y, MapType* room, Direction direction)
+{
+	MapType *corridor = new Corridor(Tile::CorridorHorizontal);
+	corridor->setX(x);
+	corridor->setY(y);
+
+	//dynamic casting :(
+	Room* r = dynamic_cast<Room*>(room);
+	if (r)
+		r->addCorridor(corridor);
+
+	switch (direction)
+	{
+		case(Direction::North) :
+			corridor->setType(Tile::CorridorVertical);
+			break;
+		case(Direction::South):
+			corridor->setType(Tile::CorridorVertical);
+			break;
+		case(Direction::East) :
+			corridor->setType(Tile::CorridorVertical);
+			break;
+		case(Direction::West) :
+			corridor->setType(Tile::CorridorVertical);
+			break;
+	}
+
+	corridors->push_back(corridor);
+	if (checkIfEntityExists(corridor))
+		deleteFromEntities(corridor->getX(), corridor->getY());
+
+	allEntities->push_back(corridor);
+
+	return corridor;
+}
 
 
 void Map::Print() const

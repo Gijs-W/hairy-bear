@@ -6,5 +6,8 @@ public:
 	Unused();
 	virtual ~Unused();
 	Tile getType();
+	void setType(Tile type);
+private:
+	Tile type;
 };
 

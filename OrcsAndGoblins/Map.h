@@ -27,7 +27,7 @@ public:
 	void Print() const;
 	MapType* makeRoom(Tile tile, int x, int y);
 	MapType* makeStairs(int x, int y);
-	MapType* makeCorridor(int x, int y);
+	MapType* makeCorridor(int x, int y, MapType* room, Direction direction);
 	MapType* makeUnused(int x, int y);
 private:
 	bool checkIfEntityExists(MapType* type);
@@ -36,6 +36,7 @@ private:
 	int xSize, ySize;
 	std::vector<MapType*>* allEntities = new std::vector<MapType*>();
 	std::vector<MapType*>* rooms = new std::vector<MapType*>();
+	std::vector<MapType*>* corridors = new std::vector<MapType*>();
 	std::vector<MapType*>* stairs = new std::vector<MapType*>();
 	std::vector<MapType*>* unuseds = new std::vector<MapType*>();
 	std::vector<Tile> data;

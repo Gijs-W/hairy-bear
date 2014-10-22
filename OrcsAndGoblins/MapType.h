@@ -14,6 +14,7 @@ public:
 	MapType();
 	virtual ~MapType();
 	virtual Tile getType();
+	virtual void setType(Tile type);
 	virtual int getX();
 	virtual int getY();
 	virtual void setX(int x);

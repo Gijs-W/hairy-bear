@@ -35,3 +35,8 @@ void MapType::setY(int y)
 {
 	this->y = y;
 }
+
+void MapType::setType(Tile type)
+{
+	this->type = type;
+}

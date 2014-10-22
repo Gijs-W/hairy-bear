@@ -68,7 +68,7 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 		{
 			int rand = std::uniform_int_distribution<int>(0, chanceRoom + chanceCorridor)(rng);
 
-			if (chanceRoom > rand)
+			if (chanceRoom > 1)
 			{
 				direction = GetRandomDirection(rng);
 				switch (direction)
@@ -76,7 +76,8 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 				case(Direction::North) :
 					if (checkIfUnused(map, x, y - 2))
 					{
-						map.makeRoom(type, x, y - 2);
+						MapType *room = map.makeRoom(type, x, y - 2);
+						MapType *corridor = map.makeCorridor(x, y - 1, room, direction);
 						/*map.SetCell(x, y, type);
 						MakeCorridor(map, rng, x, y - 1, direction);
 						MakeRoom(map, rng, x, y - 2, GetRandomDirection(rng), Tile::UndiscoveredRoom);*/
