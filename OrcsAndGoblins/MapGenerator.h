@@ -19,7 +19,7 @@ public:
 	
 
 	MapGenerator() : rngSeed(std::random_device() ()),
-						x(20), y(20), maxFeatures(100), chanceRoom(75), chanceCorridor(25)
+						x(20), y(20), maxFeatures(100), chanceRoom(90), chanceCorridor(10)
 	{
 
 	}
