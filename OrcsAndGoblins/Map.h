@@ -4,6 +4,8 @@
 #include <vector>
 #include "MapType.h"
 #include "Room.h"
+#include "Corridor.h"
+#include "Unused.h"
 
 enum class Direction
 {
@@ -26,10 +28,16 @@ public:
 	MapType* makeRoom(Tile tile, int x, int y);
 	MapType* makeStairs(int x, int y);
 	MapType* makeCorridor(int x, int y);
+	MapType* makeUnused(int x, int y);
 private:
+	bool checkIfEntityExists(MapType* type);
+	void deleteFromEntities(int x, int y);
+
 	int xSize, ySize;
+	std::vector<MapType*>* allEntities = new std::vector<MapType*>();
 	std::vector<MapType*>* rooms = new std::vector<MapType*>();
 	std::vector<MapType*>* stairs = new std::vector<MapType*>();
+	std::vector<MapType*>* unuseds = new std::vector<MapType*>();
 	std::vector<Tile> data;
 };
 

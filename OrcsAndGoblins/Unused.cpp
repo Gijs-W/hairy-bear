@@ -10,3 +10,8 @@ Unused::Unused()
 Unused::~Unused()
 {
 }
+
+Tile Unused::getType()
+{
+	return Tile::Unused;
+}

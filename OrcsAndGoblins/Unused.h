@@ -1,8 +1,10 @@
 #pragma once
-class Unused
+#include "MapType.h"
+class Unused : public MapType
 {
 public:
 	Unused();
 	virtual ~Unused();
+	Tile getType();
 };
 
