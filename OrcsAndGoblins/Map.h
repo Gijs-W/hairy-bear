@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <vector>
+#include "MapType.h"
 #include "Room.h"
 
 enum class Direction
@@ -22,12 +23,13 @@ public:
 	bool IsAreaUnused(int xStart, int yStart, int xEnd, int yEnd);
 	bool IsAdjacent(int x, int y, Tile tile);
 	void Print() const;
-
-
+	MapType* makeRoom(Tile tile, int x, int y);
+	MapType* makeStairs(int x, int y);
+	MapType* makeCorridor(int x, int y);
 private:
 	int xSize, ySize;
-	std::vector<MapType> rooms;
-	std::vector<MapType> stairs;
+	std::vector<MapType*>* rooms = new std::vector<MapType*>();
+	std::vector<MapType*>* stairs = new std::vector<MapType*>();
 	std::vector<Tile> data;
 };
 

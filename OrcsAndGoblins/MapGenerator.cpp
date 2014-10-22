@@ -70,47 +70,44 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 
 			if (chanceRoom > rand)
 			{
-				if (map.GetCell(x, y) != Tile::RoomCorridor)
+				direction = GetRandomDirection(rng);
+				switch (direction)
 				{
-					direction = GetRandomDirection(rng);
-					map.SetCell(x, y, type);
-					switch (direction)
+				case(Direction::North) :
+					if (checkIfUnused(map, x, y - 2))
 					{
-					case(Direction::North) :
-						if (checkIfUnused(map, x, y - 2))
-						{
-							MakeCorridor(map, rng, x, y - 1, direction);
-							MakeRoom(map, rng, x, y - 2, GetRandomDirection(rng), Tile::UndiscoveredRoom);
-						}
-						break;
-					case(Direction::South) :
-						if (checkIfUnused(map, x, y + 2))
-						{
-							MakeCorridor(map, rng, x, y + 1, direction);
-							MakeRoom(map, rng, x, y + 2, GetRandomDirection(rng), Tile::UndiscoveredRoom);
-						}
-						break;
-					case(Direction::East) :
-						if (checkIfUnused(map, x + 2, y))
-						{
-							MakeCorridor(map, rng, x + 1, y, direction);
-							MakeRoom(map, rng, x + 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom);
-						}
-						break;
-					case(Direction::West) :
-						if (checkIfUnused(map, x - 2, y))
-						{
-							MakeCorridor(map, rng, x - 1, y, direction);
-							MakeRoom(map, rng, x - 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom);
-						}
-						break;
+						map.makeRoom(type, x, y - 2);
+						/*map.SetCell(x, y, type);
+						MakeCorridor(map, rng, x, y - 1, direction);
+						MakeRoom(map, rng, x, y - 2, GetRandomDirection(rng), Tile::UndiscoveredRoom);*/
 					}
+					break;
 				}
-			}
-			else
-			{
-				map.SetCell(x, y, Tile::RoomCorridor);
-				return true;
+		/*		case(Direction::South) :
+					if (checkIfUnused(map, x, y + 2))
+					{
+						map.SetCell(x, y, type);
+						MakeCorridor(map, rng, x, y + 1, direction);
+						MakeRoom(map, rng, x, y + 2, GetRandomDirection(rng), Tile::UndiscoveredRoom);
+					}
+					break;
+				case(Direction::East) :
+					if (checkIfUnused(map, x + 2, y))
+					{
+						map.SetCell(x, y, type);
+						MakeCorridor(map, rng, x + 1, y, direction);
+						MakeRoom(map, rng, x + 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom);
+					}
+					break;
+				case(Direction::West) :
+					if (checkIfUnused(map, x - 2, y))
+					{
+						map.SetCell(x, y, type);
+						MakeCorridor(map, rng, x - 1, y, direction);
+						MakeRoom(map, rng, x - 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom);
+					}
+					break;
+				}*/
 			}
 		}
 	}

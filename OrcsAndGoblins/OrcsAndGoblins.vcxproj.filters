@@ -66,6 +66,12 @@
     <ClInclude Include="MapType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Corridor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unused.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -105,6 +111,12 @@
       <Filter>Source Files\EngineState</Filter>
     </ClCompile>
     <ClCompile Include="MapType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Corridor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Unused.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -56,6 +56,26 @@ bool Map::IsAdjacent(int x, int y, Tile tile)
 		GetCell(x, y - 1) == tile || GetCell(x, y + 1) == tile;
 }
 
+MapType* Map::makeRoom(Tile tile, int x, int y)
+{
+	MapType *room = new Room(tile);
+	room->setX(x);
+	room->setY(y);
+	rooms->push_back(room);
+	return room;
+}
+//
+//MapType Map::makeStairs(int x, int y);
+//{
+//
+//}
+//
+//MapType Map::makeCorridor(int x, int y);
+//{
+//
+//}
+
+
 void Map::Print() const
 {
 	for (int j = 0; j < ySize; j++)
