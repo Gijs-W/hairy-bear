@@ -1,6 +1,11 @@
 #pragma once
 #include "stdafx.h"
 using namespace std;
+struct Position {
+	int x;
+	int y;
+};
+
 class Hero
 {
 private:
@@ -11,6 +16,8 @@ private:
 	int m_attackXP = 0;
 	int m_defenceXP = 0;
 	int m_alertnessXP = 0;
+	int m_posX = 0;
+	int m_posY = 0;
 
 public:
 	Hero();
@@ -23,6 +30,8 @@ public:
 	int getAttackXP();
 	int getDefenceXP();
 	int getAlertnessXP();
+	int getPosX();
+	int getPosY();
 
 	void setName(string name);
 	void setLevel(int level);
@@ -31,7 +40,8 @@ public:
 	void setAttackXP(int attackXP);
 	void setDefenceXP(int defenceXP);
 	void setAlertnessXP(int alertnessXP);
-
+	void setPosX(int x);
+	void setPosY(int y);
 
 };
 

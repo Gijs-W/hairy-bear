@@ -55,3 +55,19 @@ void Hero::setDefenceXP(int defenceXP) {
 void Hero::setAlertnessXP(int alertnessXP) {
 	m_alertnessXP = alertnessXP;
 }
+
+int Hero::getPosX() {
+	return m_posX;
+}
+
+int Hero::getPosY() {
+	return m_posY;
+}
+
+void Hero::setPosY(int y) {
+	int m_posY = y;
+}
+
+void Hero::setPosX(int x){
+	int m_posX = x;
+}

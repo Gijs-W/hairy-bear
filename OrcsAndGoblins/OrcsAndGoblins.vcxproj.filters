@@ -81,6 +81,9 @@
     <ClInclude Include="Stairs.h">
       <Filter>Header Files\MapType</Filter>
     </ClInclude>
+    <ClInclude Include="MapDrawState.h">
+      <Filter>Header Files\EngineState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -130,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="Stairs.cpp">
       <Filter>Source Files\MapType</Filter>
+    </ClCompile>
+    <ClCompile Include="MapDrawState.cpp">
+      <Filter>Source Files\EngineState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

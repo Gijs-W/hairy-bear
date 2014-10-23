@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "InputManager.h"
+
 class Engine;
 class EngineState {
 
