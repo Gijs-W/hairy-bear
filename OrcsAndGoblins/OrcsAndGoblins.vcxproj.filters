@@ -19,6 +19,9 @@
     <Filter Include="Source Files\EngineState">
       <UniqueIdentifier>{ec2d748c-faeb-43fe-aca9-52ba115f40e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Item">
+      <UniqueIdentifier>{68f3ebdd-6757-4f3e-98b4-7b7db04c2ac6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -74,6 +77,9 @@
     </ClInclude>
     <ClInclude Include="MapDrawState.h">
       <Filter>Header Files\EngineState</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
