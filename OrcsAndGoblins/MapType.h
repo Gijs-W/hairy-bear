@@ -8,6 +8,8 @@ enum class Tile {
 	CorridorVertical,
 	CorridorHorizontal,
 	Unused,
+	StairsUp,
+	StairsDown
 };
 class MapType
 {

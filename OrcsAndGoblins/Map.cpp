@@ -31,28 +31,28 @@ Map::~Map()
 	//cant do this yet
 	/*for (int i = 0; i < rooms->size(); i++)
 	{
-		delete rooms->at(i);
+	delete rooms->at(i);
 	}
 	delete rooms;
 
 	for (int i = 0; i < stairs->size(); i++)
 	{
-		delete stairs->at(i);
+	delete stairs->at(i);
 	}
 	delete stairs;
 
 	for (int i = 0; i < unuseds->size(); i++)
 	{
-		delete unuseds->at(i);
+	delete unuseds->at(i);
 	}
 	delete unuseds;
 
 	for (int i = 0; i < corridors->size(); i++)
 	{
-		delete corridors->at(i);
+	delete corridors->at(i);
 	}
 	delete corridors;*/
-	
+
 }
 
 
@@ -87,7 +87,7 @@ bool Map::IsAdjacent(int x, int y, Tile tile)
 	assert(IsXInBounds(x - 1) && IsXInBounds(x + 1));
 	assert(IsYInBounds(y - 1) && IsYInBounds(y + 1));
 
-	return 
+	return
 		GetCell(x - 1, y) == tile || GetCell(x + 1, y) == tile ||
 		GetCell(x, y - 1) == tile || GetCell(x, y + 1) == tile;
 }
@@ -146,12 +146,21 @@ MapType* Map::makeUnused(int x, int y)
 	allEntities->push_back(unused);
 	return unused;
 }
-//
-//MapType Map::makeStairs(int x, int y)
-//{
-//
-//}
-//
+
+MapType* Map::makeStairs(int x, int y, int to, Tile type)
+{
+	MapType *stair = new Stairs(level, to);
+	stair->setX(x);
+	stair->setY(y);
+	stair->setType(type);
+	stairs->push_back(stair);
+	if (checkIfEntityExists(stair))
+		deleteFromEntities(stair->getX(), stair->getY());
+
+	allEntities->push_back(stair);
+	return stair;
+}
+
 
 void Map::checkEndRooms()
 {
@@ -165,9 +174,26 @@ void Map::checkEndRooms()
 			if (room->getCorridors()->size() == 1)
 			{
 				room->setType(Tile::UndiscoveredRoomCorridor);
+				roomCorridors->push_back(room);
 			}
 		}
 	}
+}
+
+MapType* Map::getEndRoom(RngT& rng)
+{
+	if (roomCorridors->size() == 0)
+	{
+		return nullptr;
+	}
+	MapType* rValue = nullptr;
+
+	int rand = std::uniform_int_distribution<int>(0, roomCorridors->size() - 1)(rng);
+
+	MapType *r = roomCorridors->at(rand);
+
+	rValue = r;
+	return rValue;
 }
 
 MapType* Map::makeCorridor(int x, int y, MapType* sourceRoom, MapType* targetRoom, Direction direction)
@@ -188,18 +214,18 @@ MapType* Map::makeCorridor(int x, int y, MapType* sourceRoom, MapType* targetRoo
 
 	switch (direction)
 	{
-		case(Direction::North) :
-			corridor->setType(Tile::CorridorVertical);
-			break;
-		case(Direction::South):
-			corridor->setType(Tile::CorridorVertical);
-			break;
-		case(Direction::East) :
-			corridor->setType(Tile::CorridorHorizontal);
-			break;
-		case(Direction::West) :
-			corridor->setType(Tile::CorridorHorizontal);
-			break;
+	case(Direction::North) :
+		corridor->setType(Tile::CorridorVertical);
+		break;
+	case(Direction::South) :
+		corridor->setType(Tile::CorridorVertical);
+		break;
+	case(Direction::East) :
+		corridor->setType(Tile::CorridorHorizontal);
+		break;
+	case(Direction::West) :
+		corridor->setType(Tile::CorridorHorizontal);
+		break;
 	}
 
 	corridors->push_back(corridor);
@@ -227,7 +253,7 @@ void Map::Print() const
 					switch (t)
 					{
 					case(Tile::CorridorVertical) :
-						printf("|"); 
+						printf("|");
 						break;
 					case(Tile::CorridorHorizontal) :
 						printf("-");
@@ -247,7 +273,14 @@ void Map::Print() const
 					case(Tile::UndiscoveredRoomCorridor) :
 						printf("y");
 						break;
+					case(Tile::StairsDown) :
+						printf("D");
+						break;
+					case(Tile::StairsUp) :
+						printf("U");
+						break;
 					}
+
 				}
 			}
 			//Tile t = GetCell(i, j);
@@ -257,5 +290,5 @@ void Map::Print() const
 }
 
 int xSize, ySize;
- 
+
 std::vector<Tile> data;

@@ -22,18 +22,55 @@ bool MapGenerator::MakeDungeon(Map& map, RngT& rng, int x, int y)
 	{
 		//Map map = Map(x, y, Tile::Unused);
 		MakeFirstRoomInDungeon(map, rng, x, y, Tile::Room);
+		map.checkEndRooms();
+		MapType* c = getRandomFromCorridor(map, rng);
+		if (c != nullptr)
+		{
+			if (c->getType() != Tile::StairsDown || c->getType() != Tile::StairsUp)
+			{
+				MakeStairs(map, rng, c->getX() , c->getY(), 2, Tile::StairsDown);
+				xStairs = c->getX();
+				yStairs = c->getY();
+			}
+		}
 		listMap->push_back(map);
 	}
-	map.checkEndRooms();
 
-	if (levels < 5)
+	if (levels < 3)
 	{
-		Map nextMap = Map(x * 2, y * 2, levels++,Tile::Unused);
-		MakeDungeon(nextMap, rng, x, y);
+		int nextLevel = levels++;
+		Map nextMap = Map(x * 2, y * 2, nextLevel, Tile::Unused);
+		MapType *stairs = MakeStairs(nextMap, rng, xStairs, yStairs, nextLevel - 2, Tile::StairsUp); // case : level 1 = stairs down (to level 2), level 2 = stairs up(to level 1 = nextLevel - 2), stairs down
+		MakeRoom(nextMap, rng, xStairs, yStairs, GetRandomDirection(rng), Tile::UndiscoveredRoom, stairs, nextLevel);
+		nextMap.checkEndRooms();
+
+		MapType* c = getRandomFromCorridor(nextMap, rng);
+		if (c != nullptr)
+		{
+			if (c->getType() != Tile::StairsDown || c->getType() != Tile::StairsUp)
+			{
+				MakeStairs(nextMap, rng, c->getX(), c->getY(), nextLevel, Tile::StairsDown);
+				xStairs = c->getX();
+				yStairs = c->getY();
+			}
+		}
+
+		//MakeStairs(map, rng, x, y, nextLevel - 2, Tile::StairsUp); // case : level 1 = stairs down (to level 2), level 2 = stairs up(to level 1 = nextLevel - 2), stairs down
+		//MakeStairs(map, rng, x, y, nextLevel, Tile::StairsDown);
+
 		listMap->push_back(nextMap);
+
+		MakeDungeon(nextMap, rng, x, y);
 	}
 	return false;
 }
+
+MapType* MapGenerator::getRandomFromCorridor(Map& map, RngT& rng)
+{
+	return map.getEndRoom(rng);
+}
+
+
 
 bool MapGenerator::MakeFirstRoomInDungeon(Map& map, RngT& rng, int x, int y, Tile type)
 {
@@ -52,13 +89,18 @@ bool MapGenerator::MakeFirstRoomInDungeon(Map& map, RngT& rng, int x, int y, Til
 	return false;
 }
 
+MapType* MapGenerator::MakeStairs(Map& map, RngT& rng, int x, int y, int toLevel, Tile type)
+{
+	map.SetCell(x, y, type);
+	MapType* m = map.makeStairs(x, y, toLevel, type);
+	return m;
+}
+
 bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction direction, Tile type, MapType* sourceRoom, int level)
 {
-	int maxTries = 2;
+	int maxTries = 4;
 	if (level == 1 || level == 2)
-		maxTries = 2; // magic number
-	else if (level == 3 || level == 4)
-		maxTries = 3;
+		maxTries = 3; // magic number
 	else
 		maxTries = 4;
 
@@ -131,12 +173,6 @@ bool MapGenerator::checkIfUnused(Map& map, int x, int y)
 		else
 			return false;
 	}
-}
-
-bool MapGenerator::MakeStairs(Map& map, RngT& rng, Tile tile)
-{
-	return false;
-
 }
 
 Direction MapGenerator::GetRandomDirection(RngT& rng)

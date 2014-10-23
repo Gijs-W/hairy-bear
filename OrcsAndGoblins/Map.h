@@ -2,10 +2,13 @@
 #include "stdafx.h"
 #include <iostream>
 #include <vector>
+#include <random>
+#include <cassert>
 #include "MapType.h"
 #include "Room.h"
 #include "Corridor.h"
 #include "Unused.h"
+#include "Stairs.h"
 
 enum class Direction
 {
@@ -15,6 +18,7 @@ enum class Direction
 class Map
 {
 public:
+	typedef std::mt19937 RngT;
 	Map();
 	virtual ~Map();
 	Map(int x, int y, int level, Tile value = Tile::Unused);
@@ -28,11 +32,13 @@ public:
 	void setLevel(int level);
 	int getLevel();
 	void Print() const;
+	MapType* getEndRoom(RngT& rng);
 	MapType* makeRoom(Tile tile, int x, int y);
-	MapType* makeStairs(int x, int y);
+	MapType* makeStairs(int x, int y, int to, Tile type);
 	MapType* makeCorridor(int x, int y, MapType* sourceRoom, MapType* targetRoom, Direction direction);
 	MapType* makeUnused(int x, int y);
 private:
+
 	bool checkIfEntityExists(MapType* type);
 	void deleteFromEntities(int x, int y);
 	int level;
@@ -42,6 +48,7 @@ private:
 	std::vector<MapType*>* corridors = new std::vector<MapType*>();
 	std::vector<MapType*>* stairs = new std::vector<MapType*>();
 	std::vector<MapType*>* unuseds = new std::vector<MapType*>();
+	std::vector<MapType*>* roomCorridors = new std::vector<MapType*>();
 	std::vector<Tile> data;
 };
 

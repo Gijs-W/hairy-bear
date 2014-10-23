@@ -36,6 +36,7 @@ void Engine::loop(){
 	for (int i = 0; i < maps->size(); i++)
 	{
 		maps->at(i).Print();
+		std::cout << std::endl;
 	}
 
 	m_state->handle(this);
