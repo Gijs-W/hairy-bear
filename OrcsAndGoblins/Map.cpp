@@ -4,6 +4,7 @@
 #include <string>
 #include <random>
 #include <cassert>
+int Map::currentLevel;
 
 Map::Map() : xSize(0), ySize(0), data()
 {
@@ -122,6 +123,21 @@ void Map::deleteFromEntities(int x, int y)
 			allEntities->erase(allEntities->begin() + i);
 		}
 	}
+}
+
+MapType* Map::getMapType(int x, int y) {
+	MapType* type = nullptr;
+	for (int i = 0; i < allEntities->size(); i++)
+	{
+		MapType* entity = allEntities->at(i);
+		if (entity->getX() == x && entity->getY() == y)
+		{
+			type = entity;
+			break;
+		}
+	}
+
+	return type;
 }
 
 MapType* Map::makeRoom(Tile tile, int x, int y)

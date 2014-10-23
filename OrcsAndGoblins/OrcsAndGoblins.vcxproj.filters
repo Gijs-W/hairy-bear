@@ -25,6 +25,9 @@
     <Filter Include="Source Files\MapType">
       <UniqueIdentifier>{0f1a1b3d-ff2d-4d2f-9a28-0a9ef60a9750}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Item">
+      <UniqueIdentifier>{68f3ebdd-6757-4f3e-98b4-7b7db04c2ac6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -84,6 +87,12 @@
     <ClInclude Include="MapDrawState.h">
       <Filter>Header Files\EngineState</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomViewState.h">
+      <Filter>Header Files\EngineState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -135,6 +144,9 @@
       <Filter>Source Files\MapType</Filter>
     </ClCompile>
     <ClCompile Include="MapDrawState.cpp">
+      <Filter>Source Files\EngineState</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomViewState.cpp">
       <Filter>Source Files\EngineState</Filter>
     </ClCompile>
   </ItemGroup>

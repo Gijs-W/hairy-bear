@@ -5,6 +5,7 @@
 Engine::Engine() {
 	m_state = new MapDrawState();
 	m_maps = m_mapgen->generate();
+	Map::currentLevel = 1; // beginnen op level 1;
 }
 
 Engine::~Engine() {
