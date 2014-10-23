@@ -23,7 +23,13 @@ void Engine::render() {
 }
 
 void Engine::update() {
-
+	for (int i = 0; i < m_maps->size(); i++)
+	{
+		if (!(m_maps->at(i).getHero() == m_hero) && m_maps->at(i).getLevel() == Map::currentLevel)
+		{
+			m_maps->at(i).setHero(m_hero);
+		}
+	}
 }
 
 void Engine::initHero() {
@@ -35,16 +41,11 @@ void Engine::initHero() {
 
 void Engine::loop(){
 
-	for (int i = 0; i < maps->size(); i++)
-	{
-		maps->at(i).Print();
-		std::cout << std::endl;
-	}
-
 	//InputManager* manager = InputManager::getInstance();
-	while (true){
-	m_state->handle(this);
+	while (true)
+	{
 		this->update();
+		m_state->handle(this);
 		this->render();
 	}
 }

@@ -140,6 +140,11 @@ MapType* Map::getMapType(int x, int y) {
 	return type;
 }
 
+int Map::getLevel()
+{
+	return level;
+}
+
 MapType* Map::makeRoom(Tile tile, int x, int y)
 {
 	MapType *room = new Room(tile);
@@ -194,6 +199,16 @@ void Map::checkEndRooms()
 			}
 		}
 	}
+}
+
+Hero* Map::getHero()
+{
+	return hero;
+}
+
+void Map::setHero(Hero* hero)
+{
+	this->hero = hero;
 }
 
 MapType* Map::getEndRoom(RngT& rng)
@@ -265,38 +280,44 @@ void Map::Print() const
 				MapType *r = allEntities->at(k);
 				if (r->getX() == i && r->getY() == j)
 				{
-					Tile t = r->getType();
-					switch (t)
+					if (hero->getPosX() == i && hero->getPosY())
 					{
-					case(Tile::CorridorVertical) :
-						printf("|");
-						break;
-					case(Tile::CorridorHorizontal) :
-						printf("-");
-						break;
-					case(Tile::Unused) :
-						printf(".");
-						break;
-					case(Tile::Room) :
-						printf("0");
-						break;
-					case(Tile::UndiscoveredRoom) :
-						printf("O");
-						break;
-					case(Tile::RoomCorridor) :
-						printf("x");
-						break;
-					case(Tile::UndiscoveredRoomCorridor) :
-						printf("y");
-						break;
-					case(Tile::StairsDown) :
-						printf("D");
-						break;
-					case(Tile::StairsUp) :
-						printf("U");
-						break;
+						printf("@");
 					}
-
+					else
+					{
+						Tile t = r->getType();
+						switch (t)
+						{
+						case(Tile::CorridorVertical) :
+							printf("|");
+							break;
+						case(Tile::CorridorHorizontal) :
+							printf("-");
+							break;
+						case(Tile::Unused) :
+							printf(".");
+							break;
+						case(Tile::Room) :
+							printf("0");
+							break;
+						case(Tile::UndiscoveredRoom) :
+							printf("O");
+							break;
+						case(Tile::RoomCorridor) :
+							printf("x");
+							break;
+						case(Tile::UndiscoveredRoomCorridor) :
+							printf("y");
+							break;
+						case(Tile::StairsDown) :
+							printf("D");
+							break;
+						case(Tile::StairsUp) :
+							printf("U");
+							break;
+						}
+					}
 				}
 			}
 			//Tile t = GetCell(i, j);

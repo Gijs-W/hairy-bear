@@ -8,6 +8,7 @@
 #include "Room.h"
 #include "Corridor.h"
 #include "Unused.h"
+#include "Hero.h"
 #include "Stairs.h"
 
 enum class Direction
@@ -20,8 +21,10 @@ class Map
 public:
 	typedef std::mt19937 RngT;
 	Map();
+
 	virtual ~Map();
 	Map(int x, int y, int level, Tile value = Tile::Unused);
+
 	void SetCell(int x, int y, Tile type);
 	Tile GetCell(int x, int y) const;
 	bool IsXInBounds(int x) const;
@@ -32,6 +35,9 @@ public:
 	void setLevel(int level);
 	int getLevel();
 	void Print() const;
+
+	Hero* getHero();
+	void setHero(Hero* hero);
 	MapType* getEndRoom(RngT& rng);
 	MapType* makeRoom(Tile tile, int x, int y);
 	MapType* makeStairs(int x, int y, int to, Tile type);
@@ -45,7 +51,8 @@ private:
 	void deleteFromEntities(int x, int y);
 	int level;
 	int xSize, ySize;
-	
+	Hero* hero;
+
 	std::vector<MapType*>* allEntities = new std::vector<MapType*>();
 	std::vector<MapType*>* rooms = new std::vector<MapType*>();
 	std::vector<MapType*>* corridors = new std::vector<MapType*>();
