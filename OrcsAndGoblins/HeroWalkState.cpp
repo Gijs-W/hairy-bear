@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "HeroWalkState.h"
-
+#include "RoomViewState.h"
 void HeroWalkState::handle(Engine* context) {
 	vector<string> *expectedAnswers = new vector < string > ;
 	expectedAnswers->push_back("noord");
@@ -30,8 +30,7 @@ void HeroWalkState::handle(Engine* context) {
 	}
 	handleHeroPosition(hero, context);
 
-	// als we in combat komen switchen naar combatstate ipv MapDrawState
-	context->setState(new MapDrawState());
+	
 
 	delete expectedAnswers;
 }
@@ -39,9 +38,13 @@ void HeroWalkState::handle(Engine* context) {
 void HeroWalkState::handleHeroPosition(Hero* hero, Engine* context ) {
 	MapType* maptype = context->getMaps()->at(Map::currentLevel).getMapType(hero->getPosX(), hero->getPosX());
 	
-	switch (maptype->getType()) {
-	case Tile::Room:
-		break;
-	}
+	// ooit nog is een visitor pattern hier inbouwen
+	Room* room = dynamic_cast<Room*>(maptype);
 
+	if (room) {
+		context->setState(new RoomViewState(room));
+	}
+	else {
+		context->setState(new MapDrawState());
+	}
 }
