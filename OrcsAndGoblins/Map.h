@@ -17,7 +17,7 @@ class Map
 public:
 	Map();
 	virtual ~Map();
-	Map(int x, int y, Tile value = Tile::Unused);
+	Map(int x, int y, int level, Tile value = Tile::Unused);
 	void SetCell(int x, int y, Tile type);
 	Tile GetCell(int x, int y) const;
 	bool IsXInBounds(int x) const;
@@ -25,6 +25,8 @@ public:
 	bool IsAreaUnused(int xStart, int yStart, int xEnd, int yEnd);
 	bool IsAdjacent(int x, int y, Tile tile);
 	void checkEndRooms();
+	void setLevel(int level);
+	int getLevel();
 	void Print() const;
 	MapType* makeRoom(Tile tile, int x, int y);
 	MapType* makeStairs(int x, int y);
@@ -33,7 +35,7 @@ public:
 private:
 	bool checkIfEntityExists(MapType* type);
 	void deleteFromEntities(int x, int y);
-
+	int level;
 	int xSize, ySize;
 	std::vector<MapType*>* allEntities = new std::vector<MapType*>();
 	std::vector<MapType*>* rooms = new std::vector<MapType*>();

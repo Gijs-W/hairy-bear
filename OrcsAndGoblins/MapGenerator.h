@@ -24,17 +24,20 @@ public:
 
 	}
 
-	Map generate();
+	std::vector<Map>* generate();
 
 private:
 	typedef std::mt19937 RngT;
 	bool checkIfUnused(Map& map,int x, int y);
-	bool MakeDungeon(Map& map, RngT& rng);
-	bool MakeRoom(Map& map, RngT& rng, int x, int y, Direction direction, Tile type, MapType* sourceRoom);
+	bool MakeDungeon(Map& map, RngT& rng, int x, int y);
+	bool MakeRoom(Map& map, RngT& rng, int x, int y, Direction direction, Tile type, MapType* sourceRoom, int level);
 	bool MakeFirstRoomInDungeon(Map& map, RngT& rng, int x, int y, Tile type);
 	bool MakeCorridor(Map& map, RngT& rng, int x, int y, Direction direction);
 	bool MakeStairs(Map& map, RngT& rng, Tile tile);
 	Direction GetRandomDirection(RngT& rng);
+	int levels = 1;
+
+	std::vector<Map>* listMap = new std::vector<Map>();
 
 };
 

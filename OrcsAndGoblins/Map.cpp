@@ -9,7 +9,7 @@ Map::Map() : xSize(0), ySize(0), data()
 {
 }
 
-Map::Map(int x, int y, Tile value):	xSize(x), ySize(y),	data(x * y, value)
+Map::Map(int x, int y, int level, Tile value) : xSize(x), ySize(y), data(x * y, value), level(level)
 {
 	for (int i = 0; i < ySize; i++)
 	{

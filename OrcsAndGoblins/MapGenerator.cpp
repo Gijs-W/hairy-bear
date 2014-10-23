@@ -7,54 +7,30 @@ MapGenerator::~MapGenerator()
 {
 }
 
-Map MapGenerator::generate()
+std::vector<Map>* MapGenerator::generate()
 {
 	auto rng = RngT(rngSeed);
-	Map map = Map(x, y, Tile::Unused);
-	MakeDungeon(map, rng);
-	map.Print();
-	return map;
+	Map map = Map(x, y, 1,Tile::Unused);
+	MakeDungeon(map, rng, x/2, y/2); //x/2 + y/2 for very first level
+	//map.Print();
+	return listMap;
 }
 
-bool MapGenerator::MakeDungeon(Map& map, RngT& rng)
+bool MapGenerator::MakeDungeon(Map& map, RngT& rng, int x, int y)
 {
-	MakeFirstRoomInDungeon(map, rng, x / 2, y / 2, Tile::Room);
-	map.checkEndRooms();
-	//MakeRoom(map, rng, x / 2, y / 2, GetRandomDirection(rng), Tile::Room); //midden in de map een kamer maken
-	return false;
-}
-
-bool MapGenerator::MakeCorridor(Map& map, RngT& rng, int x, int y, Direction direction)
-{
-	if (map.IsXInBounds(x) && map.IsYInBounds(y))
+	if (levels == 1)
 	{
-		switch (direction)
-		{
-		case(Direction::North) :
-			if (map.IsYInBounds(y - 1) && map.IsXInBounds(x))
-			{
-				map.SetCell(x, y, Tile::CorridorVertical);
-			}
-			break;
-		case(Direction::South) :
-			if (map.IsYInBounds(y + 1) && map.IsXInBounds(x))
-			{
-				map.SetCell(x, y, Tile::CorridorVertical);
-			}
-			break;
-		case(Direction::East) :
-			if (map.IsXInBounds(x + 1) && map.IsYInBounds(y))
-			{
-				map.SetCell(x, y, Tile::CorridorHorizontal);
-			}
-			break;
-		case(Direction::West) :
-			if (map.IsXInBounds(x - 1) && map.IsYInBounds(y))
-			{
-				map.SetCell(x, y, Tile::CorridorHorizontal);
-			}
-			break;
-		}
+		//Map map = Map(x, y, Tile::Unused);
+		MakeFirstRoomInDungeon(map, rng, x, y, Tile::Room);
+		listMap->push_back(map);
+	}
+	map.checkEndRooms();
+
+	if (levels < 5)
+	{
+		Map nextMap = Map(x * 2, y * 2, levels++,Tile::Unused);
+		MakeDungeon(nextMap, rng, x, y);
+		listMap->push_back(nextMap);
 	}
 	return false;
 }
@@ -69,16 +45,22 @@ bool MapGenerator::MakeFirstRoomInDungeon(Map& map, RngT& rng, int x, int y, Til
 		for (int i = 1; i < maxTries; i++)
 		{
 			map.SetCell(x, y, Tile::Room);
-			MakeRoom(map, rng, x, y, GetRandomDirection(rng), Tile::UndiscoveredRoom, room);
+			MakeRoom(map, rng, x, y, GetRandomDirection(rng), Tile::UndiscoveredRoom, room, 1);
 		}
 	}
 
 	return false;
 }
 
-bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction direction, Tile type, MapType* sourceRoom)
+bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction direction, Tile type, MapType* sourceRoom, int level)
 {
-	int maxTries = 4; // magic number
+	int maxTries = 2;
+	if (level == 1 || level == 2)
+		maxTries = 2; // magic number
+	else if (level == 3 || level == 4)
+		maxTries = 3;
+	else
+		maxTries = 4;
 
 	if (map.IsXInBounds(x) && map.IsYInBounds(y))
 	{
@@ -97,7 +79,7 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 						map.SetCell(x, y -2 , Tile::UndiscoveredRoom);
 						MapType *room = map.makeRoom(type, x, y - 2);
 						MapType *corridor = map.makeCorridor(x, y - 1, sourceRoom, room, direction);
-						MakeRoom(map, rng, x, y - 2, GetRandomDirection(rng), Tile::UndiscoveredRoom, room);
+						MakeRoom(map, rng, x, y - 2, GetRandomDirection(rng), Tile::UndiscoveredRoom, room, level);
 					}
 					break;
 				case(Direction::South) :
@@ -106,7 +88,7 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 						map.SetCell(x, y + 2, Tile::UndiscoveredRoom);
 						MapType *room = map.makeRoom(type, x, y + 2);
 						MapType *corridor = map.makeCorridor(x, y + 1, sourceRoom, room, direction);
-						MakeRoom(map, rng, x, y + 2, GetRandomDirection(rng), Tile::UndiscoveredRoom, room);
+						MakeRoom(map, rng, x, y + 2, GetRandomDirection(rng), Tile::UndiscoveredRoom, room, level);
 					}
 					break;
 					case(Direction::East) :
@@ -115,7 +97,7 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 							map.SetCell(x + 2, y, Tile::UndiscoveredRoom);
 							MapType *room = map.makeRoom(type, x + 2, y);
 							MapType *corridor = map.makeCorridor(x + 1, y, sourceRoom, room, direction);
-							MakeRoom(map, rng, x + 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom, room);
+							MakeRoom(map, rng, x + 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom, room, level);
 						}
 						break;
 					case(Direction::West) :
@@ -124,14 +106,14 @@ bool MapGenerator::MakeRoom(Map& map, RngT& rng, int x, int y, Direction directi
 							map.SetCell(x - 2, y, Tile::UndiscoveredRoom);
 							MapType *room = map.makeRoom(type, x - 2, y);
 							MapType *corridor = map.makeCorridor(x - 1, y, sourceRoom, room, direction);
-							MakeRoom(map, rng, x - 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom, room);
+							MakeRoom(map, rng, x - 2, y, GetRandomDirection(rng), Tile::UndiscoveredRoom, room, level);
 						}
 						break;
 					}
 				
 			}
 			//else
-			//	return false;
+				//return false;
 		}
 	}
 	//doe iets met description;

@@ -4,7 +4,6 @@
 
 Engine::Engine() {
 	m_state = new HeroWalkState();
-	map = new Map(40, 70);
 }
 
 Engine::~Engine() {
@@ -32,7 +31,13 @@ void Engine::initHero() {
 void Engine::loop(){
 	bool getMessage = false;
 	MapGenerator *m = new MapGenerator();
-	m->generate();
+	std::vector<Map>* maps = m->generate();
+
+	for (int i = 0; i < maps->size(); i++)
+	{
+		maps->at(i).Print();
+	}
+
 	m_state->handle(this);
 	//InputManager* manager = InputManager::getInstance();
 	while (getMessage){
