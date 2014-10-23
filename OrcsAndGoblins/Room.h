@@ -1,6 +1,28 @@
 #pragma once
 #include "MapType.h"
 
+enum RoomSize {
+	Small,
+	Medium,
+	Large
+};
+enum RoomFilth {
+	Clean,
+	Dirty
+};
+enum RoomFurniture {
+	TableChair,
+	Bed,
+	Empty
+};
+
+enum RoomLighting {
+	Candle,
+	Torch,
+	Fireplace
+
+};
+
 class Room : public MapType
 {
 public:
@@ -15,10 +37,17 @@ public:
 	bool getVisited();
 	void setType(Tile tile);
 	Tile getType();
+	void generateRoomContents();
 private:
+	RoomSize m_size;
+	RoomFilth m_filth;
+	RoomFurniture m_furniture;
+	RoomLighting m_lightning;
 	bool visited;
 	Tile type;
 	std::string description;
 	std::vector<MapType*>* corridors;
+
+	
 };
 
