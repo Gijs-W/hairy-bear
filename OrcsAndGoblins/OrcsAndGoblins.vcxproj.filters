@@ -72,6 +72,9 @@
     <ClInclude Include="Unused.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MapDrawState.h">
+      <Filter>Header Files\EngineState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -118,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="Unused.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapDrawState.cpp">
+      <Filter>Source Files\EngineState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
