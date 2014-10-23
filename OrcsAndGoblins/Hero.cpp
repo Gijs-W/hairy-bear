@@ -4,6 +4,8 @@
 
 Hero::Hero()
 {
+	m_posX = 0;
+	m_posY = 0;
 }
 
 
@@ -65,9 +67,9 @@ int Hero::getPosY() {
 }
 
 void Hero::setPosY(int y) {
-	int m_posY = y;
+	m_posY = y;
 }
 
 void Hero::setPosX(int x){
-	int m_posX = x;
+	 m_posX = x;
 }

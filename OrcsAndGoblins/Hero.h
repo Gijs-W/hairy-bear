@@ -16,8 +16,8 @@ private:
 	int m_attackXP = 0;
 	int m_defenceXP = 0;
 	int m_alertnessXP = 0;
-	int m_posX = 0;
-	int m_posY = 0;
+	int m_posX;
+	int m_posY;
 
 public:
 	Hero();

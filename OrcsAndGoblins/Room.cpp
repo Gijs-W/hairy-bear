@@ -4,11 +4,13 @@
 Room::Room()
 {
 	corridors = new std::vector<MapType*>();
+	generateRoomContents();
 }
 
 Room::Room(Tile type) : type(type)
 {
 	corridors = new std::vector<MapType*>();
+	generateRoomContents();
 }
 
 
@@ -20,6 +22,14 @@ Room::~Room()
 	//	delete c;
 	//}
 	//delete corridors;
+}
+
+void Room::generateRoomContents() {
+	m_size = RoomSize(rand() % 3);
+	m_lightning = RoomLighting(rand() % 3);
+	m_furniture = RoomFurniture(rand() % 3);
+	m_filth = RoomFilth(rand() % 2);
+
 }
 
 void Room::addCorridor(MapType* corridor)
