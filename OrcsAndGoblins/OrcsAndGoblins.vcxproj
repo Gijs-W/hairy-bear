@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClInclude Include="Corridor.h" />
     <ClInclude Include="Dungeon.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="Hero.h" />
@@ -92,6 +93,7 @@
     <ClInclude Include="MapDrawState.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="MapType.h" />
+    <ClInclude Include="Orc.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomViewState.h" />
@@ -103,6 +105,7 @@
   <ItemGroup>
     <ClCompile Include="Corridor.cpp" />
     <ClCompile Include="Dungeon.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="HeroWalkState.cpp" />
@@ -112,6 +115,7 @@
     <ClCompile Include="MapDrawState.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="MapType.cpp" />
+    <ClCompile Include="Orc.cpp" />
     <ClCompile Include="OrcsAndGoblins.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room.cpp" />

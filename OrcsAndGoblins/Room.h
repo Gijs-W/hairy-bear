@@ -47,7 +47,7 @@ private:
 	Tile type;
 	std::string description;
 	std::vector<MapType*>* corridors;
-
+	int chanceEnemies = 30;
 	
 };
 

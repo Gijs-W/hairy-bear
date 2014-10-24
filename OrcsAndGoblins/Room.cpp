@@ -30,6 +30,12 @@ void Room::generateRoomContents() {
 	m_furniture = RoomFurniture(rand() % 3);
 	m_filth = RoomFilth(rand() % 2);
 
+	int randenemies = rand() % 100;
+	if (randenemies < chanceEnemies)
+	{
+		//create enemies
+
+	}
 }
 
 void Room::addCorridor(MapType* corridor)

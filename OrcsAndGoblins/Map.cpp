@@ -280,7 +280,7 @@ void Map::Print() const
 				MapType *r = allEntities->at(k);
 				if (r->getX() == i && r->getY() == j)
 				{
-					if (hero->getPosX() == i && hero->getPosY())
+					if (hero->getPosX() == i && hero->getPosY() == j)
 					{
 						printf("@");
 					}
