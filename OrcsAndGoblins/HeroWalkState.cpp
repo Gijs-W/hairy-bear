@@ -13,11 +13,11 @@ void HeroWalkState::handle(Engine* context) {
 	string direction = InputManager::getInstance()->requestInput("Welke Richting?", expectedAnswers);
 
 	if (direction == "noord") {
-		hero->setPosY(hero->getPosY() + 1);
+		hero->setPosY(hero->getPosY() - 1);
 		printf("Hero gaat naar noord\n");
 	}
 	else if (direction == "zuid") {
-		hero->setPosY(hero->getPosY() - 1);
+		hero->setPosY(hero->getPosY() + 1);
 		printf("Hero gaat naar zuid\n");
 	}
 	else if (direction == "oost") {
