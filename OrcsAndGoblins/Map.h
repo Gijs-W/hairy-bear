@@ -25,6 +25,8 @@ public:
 	virtual ~Map();
 	Map(int x, int y, int level, Tile value = Tile::Unused);
 
+	int getXsize();
+	int getYsize();
 	void SetCell(int x, int y, Tile type);
 	Tile GetCell(int x, int y) const;
 	bool IsXInBounds(int x) const;

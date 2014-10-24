@@ -22,6 +22,7 @@ public :
     void update();
     void render();
 	void initHero();
+	void initMap();
 	void loop();
 	void setState(EngineState* state);
 

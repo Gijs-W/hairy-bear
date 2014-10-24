@@ -4,8 +4,6 @@
 
 Engine::Engine() {
 	m_state = new MapDrawState();
-	m_maps = m_mapgen->generate();
-	Map::currentLevel = 1; // beginnen op level 1;
 }
 
 Engine::~Engine() {
@@ -30,6 +28,22 @@ void Engine::update() {
 			m_maps->at(i).setHero(m_hero);
 		}
 	}
+}
+
+void Engine::initMap()
+{
+	m_maps = m_mapgen->generate();
+	Map::currentLevel = 1; // beginnen op level 1;
+
+	for (int i = 0; i < m_maps->size(); i++)
+	{
+		if (!(m_maps->at(i).getHero() == m_hero) && m_maps->at(i).getLevel() == Map::currentLevel)
+		{
+			m_maps->at(i).setHero(m_hero);
+			m_maps->at(i).getHero()->setPosX((m_maps->at(i).getXsize()) /2);
+			m_maps->at(i).getHero()->setPosY((m_maps->at(i).getYsize()) /2);
+		}
+	}		
 }
 
 void Engine::initHero() {

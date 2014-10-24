@@ -56,6 +56,15 @@ Map::~Map()
 
 }
 
+int Map::getXsize()
+{
+	return xSize;
+}
+
+int Map::getYsize()
+{
+	return ySize;
+}
 
 void Map::SetCell(int x, int y, Tile type)
 {
