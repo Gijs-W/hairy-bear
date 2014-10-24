@@ -7,5 +7,22 @@ RoomViewState::RoomViewState(Room* room) {
 }
 
 void RoomViewState::handle(Engine* context) {
-	InputManager::getInstance()->requestInput("Je staat in een kamer. Wat doe je?");
+	std::cout << m_room->getDescription() << std::endl;
+
+	vector<string> *expectedAnswers = new vector < string >;
+	expectedAnswers->push_back("verlaten");
+	expectedAnswers->push_back("blijven");
+
+
+	string action = InputManager::getInstance()->requestInput("Wat doe je?", expectedAnswers);
+	
+	if (action == "verlaten") {
+		printf("Je hebt de kamer verlaten.\n");
+		context->setState(new HeroWalkState());
+	}
+	
+	
+	delete expectedAnswers;
+
+
 }
