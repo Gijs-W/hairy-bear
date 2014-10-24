@@ -102,7 +102,7 @@ bool Map::IsAdjacent(int x, int y, Tile tile)
 		GetCell(x, y - 1) == tile || GetCell(x, y + 1) == tile;
 }
 
-bool Map::checkIfEntityExists(MapType* type)
+bool Map::checkIfEntityExists(int x, int y)
 {
 	bool value = false;
 	if (allEntities->size() == 0)
@@ -112,7 +112,7 @@ bool Map::checkIfEntityExists(MapType* type)
 		for (int i = 0; i < allEntities->size(); i++)
 		{
 			MapType* entity = allEntities->at(i);
-			if (entity->getX() == type->getX() && entity->getY() == type->getY())
+			if (entity->getX() == x && entity->getY() == y)
 			{
 				value = true;
 			}
@@ -156,12 +156,13 @@ int Map::getLevel()
 
 MapType* Map::makeRoom(Tile tile, int x, int y)
 {
+	if (checkIfEntityExists(x, y))
+		deleteFromEntities(x, y);
+
 	MapType *room = new Room(tile);
 	room->setX(x);
 	room->setY(y);
 	rooms->push_back(room);
-	if (checkIfEntityExists(room))
-		deleteFromEntities(room->getX(), room->getY());
 
 	allEntities->push_back(room);
 	return room;
@@ -179,13 +180,13 @@ MapType* Map::makeUnused(int x, int y)
 
 MapType* Map::makeStairs(int x, int y, int to, Tile type)
 {
+	if (checkIfEntityExists(x, y))
+		deleteFromEntities(x, y);
 	MapType *stair = new Stairs(level, to);
 	stair->setX(x);
 	stair->setY(y);
 	stair->setType(type);
 	stairs->push_back(stair);
-	if (checkIfEntityExists(stair))
-		deleteFromEntities(stair->getX(), stair->getY());
 
 	allEntities->push_back(stair);
 	return stair;
@@ -238,6 +239,9 @@ MapType* Map::getEndRoom(RngT& rng)
 
 MapType* Map::makeCorridor(int x, int y, MapType* sourceRoom, MapType* targetRoom, Direction direction)
 {
+	if (checkIfEntityExists(x,y))
+		deleteFromEntities(x, y);
+
 	MapType *corridor = new Corridor(sourceRoom, targetRoom);
 	corridor->setX(x);
 	corridor->setY(y);
@@ -269,8 +273,6 @@ MapType* Map::makeCorridor(int x, int y, MapType* sourceRoom, MapType* targetRoo
 	}
 
 	corridors->push_back(corridor);
-	if (checkIfEntityExists(corridor))
-		deleteFromEntities(corridor->getX(), corridor->getY());
 
 	allEntities->push_back(corridor);
 
@@ -295,6 +297,22 @@ void Map::Print() const
 					}
 					else
 					{
+						//if (i == 10 && j == 9)
+						//{
+						//	printf("north");
+						//}
+						//else if (i == 10 && j == 11)
+						//{
+						//	printf("south");
+						//}
+						//else if (i == 11 && j == 10)
+						//{
+						//	printf("east");
+						//}
+						//else if (i == 9 && j == 10)
+						//{
+						//	printf("west");
+						//}
 						Tile t = r->getType();
 						switch (t)
 						{

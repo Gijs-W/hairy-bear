@@ -3,10 +3,10 @@
 #include "RoomViewState.h"
 void HeroWalkState::handle(Engine* context) {
 	Hero* hero = context->getHero();
-	MapType* northMap = context->getMaps()->at(Map::currentLevel).getMapType(hero->getPosX(), hero->getPosY() -1);
-	MapType* southMap = context->getMaps()->at(Map::currentLevel).getMapType(hero->getPosX(), hero->getPosY() + 1);
-	MapType* eastMap = context->getMaps()->at(Map::currentLevel).getMapType(hero->getPosX()+1, hero->getPosY());
-	MapType* westMap = context->getMaps()->at(Map::currentLevel).getMapType(hero->getPosX()-1, hero->getPosY());
+	MapType* northMap = context->getMaps()->at(Map::currentLevel -1).getMapType(hero->getPosX(), hero->getPosY() - 1);
+	MapType* southMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX(), hero->getPosY() + 1);
+	MapType* eastMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX() + 1, hero->getPosY());
+	MapType* westMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX() - 1, hero->getPosY());
 
 
 	vector<string> *expectedAnswers = new vector < string > ;
@@ -33,7 +33,7 @@ void HeroWalkState::handle(Engine* context) {
 	}
 	else if (direction == "west") {
 		hero->setPosX(hero->getPosX() - 1);
-		printf("Hero gaat naar west");
+		printf("Hero gaat naar west\n");
 	}
 	handleHeroPosition(hero, context);
 
@@ -43,7 +43,7 @@ void HeroWalkState::handle(Engine* context) {
 }
 
 void HeroWalkState::handleHeroPosition(Hero* hero, Engine* context ) {
-	MapType* maptype = context->getMaps()->at(Map::currentLevel).getMapType(hero->getPosX(), hero->getPosY());
+	MapType* maptype = context->getMaps()->at(Map::currentLevel -1).getMapType(hero->getPosX(), hero->getPosY());
 	
 	// ooit nog is een visitor pattern hier inbouwen
 	Room* room = dynamic_cast<Room*>(maptype);
@@ -64,8 +64,7 @@ bool HeroWalkState::isWalkableTile(MapType* type) {
 
 	switch (tile) {
 		/* falltrough*/
-	case Tile::CorridorVertical:
-	case Tile::CorridorHorizontal:
+	case Tile::Unused:
 		return false;
 	default:
 		return true;

@@ -4,12 +4,14 @@
 Room::Room()
 {
 	corridors = new std::vector<MapType*>();
+	enemies = new std::vector<Enemy*>();
 	generateRoomContents();
 }
 
 Room::Room(Tile type) : type(type)
 {
 	corridors = new std::vector<MapType*>();
+	enemies = new std::vector<Enemy*>();
 	generateRoomContents();
 }
 
@@ -34,7 +36,8 @@ void Room::generateRoomContents() {
 	if (randenemies < chanceEnemies)
 	{
 		//create enemies
-
+		Enemy* test = new Orc(1);
+		enemies->push_back(test);
 	}
 }
 
@@ -145,6 +148,16 @@ std::string Room::getDescription() {
 	description.append(".\nDe kamer wordt verlicht door een ");
 	description.append(lightning);
 	description.append(".\n");
+	if (enemies->size() != 0)
+	{
+		for (int i = 0; i < enemies->size(); i++)
+		{
+			description.append("In deze kamer staan");
+			description.append(enemies->size() + "");
+			description.append(enemies->at(i)->getName());
+			description.append(".\n");
+		}
+	}
 	return description;
 
 }

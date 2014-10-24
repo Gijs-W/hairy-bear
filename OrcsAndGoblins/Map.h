@@ -49,7 +49,7 @@ public:
 	static int currentLevel;
 private:
 
-	bool checkIfEntityExists(MapType* type);
+	bool checkIfEntityExists(int x, int y);
 	void deleteFromEntities(int x, int y);
 	int level;
 	int xSize, ySize;

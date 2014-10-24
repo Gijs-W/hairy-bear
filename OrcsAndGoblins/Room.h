@@ -1,6 +1,8 @@
 #pragma once
 #include "MapType.h"
 #include "Hero.h"
+#include "Enemy.h"
+#include "Orc.h"
 
 enum RoomSize {
 	Small,
@@ -49,7 +51,8 @@ private:
 	Tile type;
 	std::string description;
 	std::vector<MapType*>* corridors;
-	int chanceEnemies = 30;
+	std::vector<Enemy*>* enemies;
+	int chanceEnemies = 100;
 	
 };
 
