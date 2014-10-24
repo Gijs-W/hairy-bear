@@ -1,5 +1,6 @@
 #pragma once
 #include "MapType.h"
+#include "Hero.h"
 
 enum RoomSize {
 	Small,
@@ -38,6 +39,7 @@ public:
 	void setType(Tile tile);
 	Tile getType();
 	void generateRoomContents();
+	bool lookForItems(Hero* hero);
 private:
 	RoomSize m_size;
 	RoomFilth m_filth;
