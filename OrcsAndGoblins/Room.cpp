@@ -32,12 +32,32 @@ void Room::generateRoomContents() {
 	m_furniture = RoomFurniture(rand() % 3);
 	m_filth = RoomFilth(rand() % 2);
 
+	EnemyType et = EnemyType(rand() % 4);
+
+	int count = rand() % (2 * (Map::currentLevel + 1));
 	int randenemies = rand() % 100;
 	if (randenemies < chanceEnemies)
 	{
-		//create enemies
-		Enemy* test = new Orc(1);
-		enemies->push_back(test);
+		for (int i = 0; i < count; i++)
+		{
+			Enemy* enemy = nullptr;
+			switch (et)
+			{
+			case(EnemyType::Orc):
+				enemy = new Orc((Map::currentLevel + 1));
+				break;
+			case(EnemyType::Rat) :
+				enemy = new Rat((Map::currentLevel + 1));
+				break;
+			case(EnemyType::Goblin) :
+				enemy = new Goblin((Map::currentLevel + 1));
+				break;
+			case(EnemyType::Skeleton) :
+				enemy = new Skeleton((Map::currentLevel + 1));
+				break;
+			}
+			enemies->push_back(enemy);
+		}
 	}
 }
 
@@ -152,9 +172,9 @@ std::string Room::getDescription() {
 	{
 		for (int i = 0; i < enemies->size(); i++)
 		{
-			description.append("In deze kamer staan");
+			description.append("In deze kamer staan ");
 			description.append(enemies->size() + "");
-			description.append(enemies->at(i)->getName());
+			description.append(enemies->at(i)->getName() + "(s)");
 			description.append(".\n");
 		}
 	}

@@ -3,6 +3,10 @@
 #include "Hero.h"
 #include "Enemy.h"
 #include "Orc.h"
+#include "Goblin.h"
+#include "Rat.h"
+#include "Skeleton.h"
+#include "Map.h"
 
 enum RoomSize {
 	Small,
@@ -52,7 +56,7 @@ private:
 	std::string description;
 	std::vector<MapType*>* corridors;
 	std::vector<Enemy*>* enemies;
-	int chanceEnemies = 100;
+	int chanceEnemies = 35;
 	
 };
 
