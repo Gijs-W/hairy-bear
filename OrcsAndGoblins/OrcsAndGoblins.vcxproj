@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Corridor.h" />
+    <ClInclude Include="CupOfTea.h" />
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine.h" />
@@ -87,7 +88,9 @@
     <ClInclude Include="Hero.h" />
     <ClInclude Include="HeroWalkState.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="InventoryViewState.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="MagicHealthPotion.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapDrawState.h" />
@@ -104,12 +107,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Corridor.cpp" />
+    <ClCompile Include="CupOfTea.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="HeroWalkState.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="InventoryViewState.cpp" />
+    <ClCompile Include="MagicHealthPotion.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapDrawState.cpp" />

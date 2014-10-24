@@ -6,21 +6,60 @@ Hero::Hero()
 {
 	m_posX = 0;
 	m_posY = 0;
+	inventory = new vector < Item* > ();
+
 }
 
 
 Hero::~Hero()
 {
+	for (auto &it : *inventory) {
+		delete it;
+	}
+	delete inventory;
+}
+
+bool Hero::regenerateHealth(int health) {
+	// Het maximum aantal levens cappen bij regeneraten
+	int maxHealth = m_level * 2;
+
+	if (m_health + health >= maxHealth) {
+		if (maxHealth - m_health == 0) {
+			return false;
+		}
+		m_health = maxHealth;
+		return true;
+	}
+	m_health += health;
+	return true;
 }
 
 bool Hero::regenerateHealth() {
-	// Het maximum aantal levens cappen bij regeneraten
-	if (m_health >= m_level * 2) {
-		return false;
-	}
-	m_health++;
-	return true;
+	return regenerateHealth(1);
 }
+
+
+void Hero::addToInventory(Item* item) {
+	inventory->push_back(item);
+}
+void Hero::removeFromInventory(Item* item) {
+	for (auto it = inventory->begin(); it != inventory->end(); it++) {
+		if (*it == item) {
+			*it = nullptr;
+			delete item;
+		}
+	}
+
+	auto toRemove = std::remove_if(inventory->begin(), inventory->end(), [](Item* p) {
+		return p == nullptr;
+	});
+
+	inventory->erase(toRemove, inventory->end());
+}
+vector<Item*>* Hero::getInventoryList() {
+	return inventory;
+}
+
 
 string Hero::getName() {
 	return m_name;
