@@ -1,6 +1,8 @@
+#pragma once
 #include "Item.h"
-class MagicHealthPotion : public Item {
+class CupOfTea : public Item {
 public:
+
 	string getName();
 	void use(Hero* hero);
 };

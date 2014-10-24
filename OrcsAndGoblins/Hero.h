@@ -1,14 +1,18 @@
 #pragma once
 #include "stdafx.h"
+#include <algorithm>
+
 using namespace std;
 struct Position {
 	int x;
 	int y;
 };
+class Item;
 
 class Hero
 {
 private:
+	vector<Item*>* inventory;
 	string m_name;
 	int m_level = 1;
 	int m_health = 100;
@@ -18,6 +22,7 @@ private:
 	int m_alertnessXP = 0;
 	int m_posX;
 	int m_posY;
+	
 
 public:
 	Hero();
@@ -45,6 +50,10 @@ public:
 
 	bool regenerateHealth();
 	bool regenerateHealth(int health);
+
+	void addToInventory(Item* item);
+	void removeFromInventory(Item* item);
+	vector<Item*>* getInventoryList();
 
 };
 

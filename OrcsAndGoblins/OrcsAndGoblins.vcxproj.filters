@@ -99,6 +99,12 @@
     <ClInclude Include="MagicHealthPotion.h">
       <Filter>Header Files\Item</Filter>
     </ClInclude>
+    <ClInclude Include="CupOfTea.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryViewState.h">
+      <Filter>Header Files\EngineState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -157,6 +163,12 @@
     </ClCompile>
     <ClCompile Include="MagicHealthPotion.cpp">
       <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CupOfTea.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryViewState.cpp">
+      <Filter>Source Files\EngineState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
