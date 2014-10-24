@@ -22,6 +22,16 @@ bool Hero::regenerateHealth() {
 	return true;
 }
 
+bool Hero::regenerateHealth(int health) {
+	// Het maximum aantal levens cappen bij regeneraten
+	if (m_health >= m_level * 2) {
+		return false;
+	}
+	m_health += health
+	return true;
+}
+
+
 string Hero::getName() {
 	return m_name;
 }

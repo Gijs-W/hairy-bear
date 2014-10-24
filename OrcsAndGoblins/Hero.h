@@ -44,6 +44,7 @@ public:
 	void setPosY(int y);
 
 	bool regenerateHealth();
+	bool regenerateHealth(int health);
 
 };
 

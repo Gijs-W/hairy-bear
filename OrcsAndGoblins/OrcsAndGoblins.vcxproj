@@ -87,6 +87,7 @@
     <ClInclude Include="HeroWalkState.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="MagicHealthPotion.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapDrawState.h" />
@@ -107,6 +108,7 @@
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="HeroWalkState.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="MagicHealthPotion.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapDrawState.cpp" />

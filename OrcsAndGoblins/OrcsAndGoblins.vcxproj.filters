@@ -28,6 +28,9 @@
     <Filter Include="Header Files\Item">
       <UniqueIdentifier>{68f3ebdd-6757-4f3e-98b4-7b7db04c2ac6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Item">
+      <UniqueIdentifier>{0dbf1572-60f3-423b-bbac-04466a84ece4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -93,6 +96,9 @@
     <ClInclude Include="RoomViewState.h">
       <Filter>Header Files\EngineState</Filter>
     </ClInclude>
+    <ClInclude Include="MagicHealthPotion.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -148,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="RoomViewState.cpp">
       <Filter>Source Files\EngineState</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicHealthPotion.cpp">
+      <Filter>Source Files\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
