@@ -14,7 +14,7 @@ void RoomViewState::handle(Engine* context) {
 	expectedAnswers->push_back("verlaten");
 	expectedAnswers->push_back("zoeken");
 	expectedAnswers->push_back("blijven");
-
+	expectedAnswers->push_back("inventory");
 
 	string action = InputManager::getInstance()->requestInput("Wat doe je?", expectedAnswers);
 	
@@ -42,6 +42,9 @@ void RoomViewState::handle(Engine* context) {
 	else if (action == "verlaten") {
 		printf("Je hebt de kamer verlaten.\n");
 		context->setState(new HeroWalkState());
+	}
+	else if (action == "inventory") {
+		context->setState(new InventoryViewState(m_room));
 	}
 	
 	
