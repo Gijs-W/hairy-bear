@@ -66,6 +66,12 @@ Tile Room::getType()
 	return type;
 }
 
+bool Room::lookForItems(Hero* hero) {
+	//if room->containtsItems ofzo return true
+	return false;
+}
+
+
 std::string Room::getDescription() {
 
 	std::string size;
