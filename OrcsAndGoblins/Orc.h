@@ -6,9 +6,6 @@ public:
 	Orc();
 	Orc(int dungeonLevel);
 	virtual ~Orc();
-	int getXP();
-	int getLevel();
-	int getHealth();
 	EnemyType getType();
 	std::string getName();
 private:
@@ -16,6 +13,7 @@ private:
 	std::string m_name;
 	int m_health;
 	int m_level;
+	int m_flightChance;
 	int m_xpOnDeath;
 	EnemyType type;
 };

@@ -16,24 +16,9 @@ Orc::Orc(int dungeonLevel)
 	generateHealthAndLevel(dungeonLevel);
 }
 
-int Orc::getHealth()
-{
-	return m_health;
-}
-
-int Orc::getLevel()
-{
-	return m_level;
-}
-
 std::string Orc::getName()
 {
-	return "Ork";
-}
-
-int Orc::getXP()
-{
-	return m_xpOnDeath;
+	return "ork";
 }
 
 EnemyType Orc::getType()
@@ -48,4 +33,6 @@ void Orc::generateHealthAndLevel(int dungeonLevel)
 	int m_baseXPonDeath = 30;
 	m_xpOnDeath = m_baseXPonDeath * dungeonLevel;
 	m_level = dungeonLevel * 2;
+	int m_baseFlightChance = 20;
+	m_flightChance = m_baseFlightChance / dungeonLevel;
 }

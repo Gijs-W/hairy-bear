@@ -16,24 +16,9 @@ Skeleton::Skeleton(int dungeonLevel)
 	generateHealthAndLevel(dungeonLevel);
 }
 
-int Skeleton::getHealth()
-{
-	return m_health;
-}
-
-int Skeleton::getLevel()
-{
-	return m_level;
-}
-
 std::string Skeleton::getName()
 {
-	return "Skeleton";
-}
-
-int Skeleton::getXP()
-{
-	return m_xpOnDeath;
+	return "skelet";
 }
 
 EnemyType Skeleton::getType()
@@ -48,4 +33,6 @@ void Skeleton::generateHealthAndLevel(int dungeonLevel)
 	int m_baseXPonDeath = 40;
 	m_xpOnDeath = m_baseXPonDeath * dungeonLevel;
 	m_level = dungeonLevel * 3;
+	int m_baseFlightChance = 20;
+	m_flightChance = m_baseFlightChance / dungeonLevel;
 }

@@ -35,6 +35,7 @@ void Room::generateRoomContents() {
 	EnemyType et = EnemyType(rand() % 4);
 
 	int count = rand() % (2 * (Map::currentLevel + 1));
+	numberOfEnemies = count;
 	int randenemies = rand() % 100;
 	if (randenemies < chanceEnemies)
 	{
@@ -178,7 +179,7 @@ std::string Room::getDescription() {
 		for (int i = 0; i < enemies->size(); i++)
 		{
 			description.append("In deze kamer staan ");
-			description.append(enemies->size() + "");
+			description.append(std::to_string(numberOfEnemies) + " ");
 			description.append(enemies->at(i)->getName() + "(s)");
 			description.append(".\n");
 		}

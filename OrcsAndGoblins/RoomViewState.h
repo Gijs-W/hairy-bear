@@ -3,6 +3,7 @@
 #include "EngineState.h"
 #include "Engine.h"
 #include "InventoryViewState.h"
+#include "FightState.h"
 class RoomViewState : public EngineState {
 private:
 	Room* m_room; 

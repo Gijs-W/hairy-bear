@@ -28,8 +28,11 @@ void RoomViewState::handle(Engine* context) {
 	string action = InputManager::getInstance()->requestInput("Wat doe je?", expectedAnswers);
 	
 	if (action == "vechten") {
-		// Hier een check of er vijanden zijn
-		printf("Er zijn op dit moment geen vijanden om tegen te vechten.\n");
+		context->setState(new FightState(m_room));
+	}
+	else if (action == "vluchten")
+	{
+		//flight state
 	}
 	else if (action == "zoeken") {
 		if (m_room->lookForItems(context->getHero())) {
