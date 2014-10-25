@@ -61,6 +61,11 @@ void Room::generateRoomContents() {
 	}
 }
 
+std::vector<Enemy*>* Room::getEnemies()
+{
+	return enemies;
+}
+
 void Room::addCorridor(MapType* corridor)
 {
 	corridors->push_back(corridor);

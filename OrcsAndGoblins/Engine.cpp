@@ -3,7 +3,7 @@
 
 
 Engine::Engine() {
-	m_state = new MapDrawState();
+	//m_state = new MapDrawState();
 }
 
 Engine::~Engine() {
@@ -42,8 +42,12 @@ void Engine::initMap()
 			m_maps->at(i).setHero(m_hero);
 			m_maps->at(i).getHero()->setPosX((m_maps->at(i).getXsize()) /2);
 			m_maps->at(i).getHero()->setPosY((m_maps->at(i).getYsize()) /2);
+			MapType* r = m_maps->at(i).getMapType((m_maps->at(i).getXsize()) / 2, (m_maps->at(i).getYsize()) / 2);
+			Room* room = dynamic_cast<Room*>(r);
+			if (room)
+				setState(new RoomViewState(room));
 		}
-	}		
+	}	
 }
 
 void Engine::initHero() {

@@ -7,6 +7,7 @@
 #include "MapGenerator.h"
 #include "HeroWalkState.h"
 #include "MapDrawState.h"
+#include "RoomViewState.h"
 class Engine {
 private:
 	Hero* m_hero;

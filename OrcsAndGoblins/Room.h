@@ -46,6 +46,7 @@ public:
 	Tile getType();
 	void generateRoomContents();
 	bool lookForItems(Hero* hero);
+	std::vector<Enemy*>* getEnemies();
 private:
 	RoomSize m_size;
 	RoomFilth m_filth;

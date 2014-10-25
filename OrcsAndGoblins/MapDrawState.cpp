@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "mapDrawState.h"
-
+MapDrawState::MapDrawState(Room* room)
+{
+	curRoom = room;
+}
 void MapDrawState::handle(Engine* context) {
 	std::vector<Map>* maps = context->getMaps();
 
@@ -8,5 +11,5 @@ void MapDrawState::handle(Engine* context) {
 		maps->at(Map::currentLevel - 1).Print();
 
 
-	context->setState(new HeroWalkState());
+		context->setState(new RoomViewState(curRoom));
 }

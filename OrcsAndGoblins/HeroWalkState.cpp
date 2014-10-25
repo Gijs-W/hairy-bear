@@ -53,7 +53,7 @@ void HeroWalkState::handleHeroPosition(Hero* hero, Engine* context ) {
 	}
 	else {
 		//context->setState(new RoomViewState(new Room()));
-		context->setState(new MapDrawState());
+		//context->setState(new MapDrawState());
 	}
 }
 

@@ -10,11 +10,20 @@ void RoomViewState::handle(Engine* context) {
 	std::cout << m_room->getDescription() << std::endl;
 
 	vector<string> *expectedAnswers = new vector < string >;
-	expectedAnswers->push_back("vechten");
-	expectedAnswers->push_back("verlaten");
-	expectedAnswers->push_back("zoeken");
-	expectedAnswers->push_back("blijven");
-	expectedAnswers->push_back("inventory");
+
+	if (m_room->getEnemies()->size() > 0)
+	{
+		expectedAnswers->push_back("vechten");
+		expectedAnswers->push_back("vluchten");
+	}
+	else
+	{
+		expectedAnswers->push_back("verlaten");
+		expectedAnswers->push_back("zoeken");
+		expectedAnswers->push_back("blijven");
+		expectedAnswers->push_back("kaart");
+		expectedAnswers->push_back("inventory");
+	}
 
 	string action = InputManager::getInstance()->requestInput("Wat doe je?", expectedAnswers);
 	
@@ -46,7 +55,10 @@ void RoomViewState::handle(Engine* context) {
 	else if (action == "inventory") {
 		context->setState(new InventoryViewState(m_room));
 	}
-	
+	else if (action == "kaart")
+	{
+		context->setState(new MapDrawState(m_room));
+	}
 	
 	delete expectedAnswers;
 
