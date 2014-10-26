@@ -259,16 +259,16 @@ MapType* Map::makeCorridor(int x, int y, MapType* sourceRoom, MapType* targetRoo
 	switch (direction)
 	{
 	case(Direction::North) :
-		corridor->setType(Tile::CorridorVertical);
+		corridor->setType(Tile::UndiscoveredCorridorVertical);
 		break;
 	case(Direction::South) :
-		corridor->setType(Tile::CorridorVertical);
+		corridor->setType(Tile::UndiscoveredCorridorVertical);
 		break;
 	case(Direction::East) :
-		corridor->setType(Tile::CorridorHorizontal);
+		corridor->setType(Tile::UndiscoveredCorridorHorizontal);
 		break;
 	case(Direction::West) :
-		corridor->setType(Tile::CorridorHorizontal);
+		corridor->setType(Tile::UndiscoveredCorridorHorizontal);
 		break;
 	}
 
@@ -329,19 +329,31 @@ void Map::Print() const
 							printf("0");
 							break;
 						case(Tile::UndiscoveredRoom) :
-							printf("O");
+							printf(".");
 							break;
 						case(Tile::RoomCorridor) :
 							printf("x");
 							break;
 						case(Tile::UndiscoveredRoomCorridor) :
-							printf("y");
+							printf(".");
 							break;
 						case(Tile::StairsDown) :
 							printf("D");
 							break;
 						case(Tile::StairsUp) :
 							printf("U");
+							break;
+						case(Tile::UndiscoveredCorridorHorizontal) :
+							printf(".");
+							break;
+						case(Tile::UndiscoveredCorridorVertical) :
+							printf(".");
+							break;
+						case(Tile::UndiscoveredStairsDown) :
+							printf(".");
+							break;
+						case(Tile::UndiscoveredStairsUp) :
+							printf(".");
 							break;
 						}
 					}

@@ -35,3 +35,25 @@ int Stairs::getToLevel()
 {
 	return toLevel;
 }
+
+void Stairs::setVisited(bool visit)
+{
+	visited = visit;
+	if (visited)
+	{
+		switch (type)
+		{
+		case(Tile::UndiscoveredStairsUp) :
+			setType(Tile::StairsUp);
+			break;
+		case(Tile::UndiscoveredStairsDown) :
+			setType(Tile::StairsDown);
+			break;
+		}
+	}
+}
+
+bool Stairs::getVisited()
+{
+	return visited;
+}

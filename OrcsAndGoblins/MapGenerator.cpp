@@ -12,7 +12,6 @@ std::vector<Map>* MapGenerator::generate()
 	auto rng = RngT(rngSeed);
 	Map map = Map(x, y, 1,Tile::Unused);
 	MakeDungeon(map, rng, x/2, y/2); //x/2 + y/2 for very first level
-	//map.Print();
 	return listMap;
 }
 
@@ -26,9 +25,9 @@ bool MapGenerator::MakeDungeon(Map& map, RngT& rng, int x, int y)
 		MapType* c = getRandomFromCorridor(map, rng);
 		if (c != nullptr)
 		{
-			if (c->getType() != Tile::StairsDown || c->getType() != Tile::StairsUp)
+			if (c->getType() != Tile::StairsDown || c->getType() != Tile::StairsUp || c->getType() != Tile::UndiscoveredStairsDown  || c->getType() != Tile::UndiscoveredStairsUp)
 			{
-				MakeStairs(map, rng, c->getX() , c->getY(), 2, Tile::StairsDown);
+				MakeStairs(map, rng, c->getX() , c->getY(), 2, Tile::UndiscoveredStairsDown);
 				xStairs = c->getX();
 				yStairs = c->getY();
 			}

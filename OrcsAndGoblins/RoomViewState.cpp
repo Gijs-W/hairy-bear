@@ -4,6 +4,11 @@
 RoomViewState::RoomViewState(Room* room) {
 	m_room = room;
 	m_room->setVisited(true);
+	std::vector<MapType*>* cor = m_room->getCorridors();
+	for (int i = 0; i < cor->size(); i++)
+	{
+		cor->at(i)->setVisited(true);
+	}
 }
 
 void RoomViewState::handle(Engine* context) {

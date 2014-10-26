@@ -78,7 +78,7 @@ void FightState::handle(Engine* context)
 
 bool FightState::checkIfEnemyHasHP(Enemy* enemy)
 { 
-	if (enemy->getHealth() < 0)
+	if (enemy->getHealth() <= 0)
 	{
 		return false;
 	}

@@ -25,3 +25,26 @@ Tile Corridor::getType()
 {
 	return type;
 }
+
+void Corridor::setVisited(bool visit)
+{
+	visited = visit;
+	if (visited)
+	{
+		switch (type)
+		{
+
+		case(Tile::UndiscoveredCorridorHorizontal) :
+			setType(Tile::CorridorHorizontal);
+			break;
+		case(Tile::UndiscoveredCorridorVertical) :
+			setType(Tile::CorridorVertical);
+			break;
+		}
+	}
+}
+
+bool Corridor::getVisited()
+{
+	return visited;
+}
