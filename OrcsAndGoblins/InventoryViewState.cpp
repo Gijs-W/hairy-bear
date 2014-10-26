@@ -9,7 +9,7 @@ void InventoryViewState::handle(Engine* context) {
 	printf("Je hebt een aantal dingetjes in je inventory zitten.\n");
 
 	vector<Item*>* itemList = context->getHero()->getInventoryList();
-	itemList->push_back(new CupOfTea);
+
 	for (auto &it : *itemList) {
 		std::cout << "-" << it->getName() << std::endl;
 	}
