@@ -12,6 +12,7 @@ Room::Room(Tile type) : type(type)
 {
 	corridors = new std::vector<MapType*>();
 	enemies = new std::vector<Enemy*>();
+	items = new std::vector < Item* > ;
 	generateRoomContents();
 }
 
@@ -24,6 +25,20 @@ Room::~Room()
 	//	delete c;
 	//}
 	//delete corridors;
+	for (auto item : *items) { 
+		delete item;
+	}
+	delete items;
+
+	for (auto corridor : *corridors) {
+		delete corridor;
+	}
+	delete corridors;
+
+	for (auto enemy : *enemies) {
+		delete enemy;
+	}
+	delete enemies;
 }
 
 void Room::generateRoomContents() {
@@ -59,6 +74,16 @@ void Room::generateRoomContents() {
 			}
 			enemies->push_back(enemy);
 		}
+	}
+
+	int itemDice = rand() % 1;
+	switch (itemDice) {
+	case 0:
+		items->push_back(new MagicHealthPotion);
+		break;
+	case 1:
+		items->push_back(new CupOfTea);
+		break;
 	}
 }
 
@@ -102,10 +127,21 @@ Tile Room::getType()
 }
 
 bool Room::lookForItems(Hero* hero) {
-	//if room->containtsItems ofzo return true
+	if (items->size() > 0) {
+		for (auto &item : *items) {
+			hero->addToInventory(item);
+		}
+
+		items->clear();
+		return true;
+	}
+
 	return false;
 }
 
+std::vector<Item*>* Room::getItems() {
+	return items;
+}
 
 std::string Room::getDescription() {
 
