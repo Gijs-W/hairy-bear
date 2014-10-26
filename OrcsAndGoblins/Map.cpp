@@ -357,6 +357,7 @@ void Map::Print() const
 							break;
 						}
 					}
+					printf(" ");
 				}
 			}
 			//Tile t = GetCell(i, j);
