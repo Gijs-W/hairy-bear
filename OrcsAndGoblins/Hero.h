@@ -37,6 +37,9 @@ public:
 	int getAlertnessXP();
 	int getPosX();
 	int getPosY();
+	int getAttackLevel();
+	int getDefenseLevel();
+	int getAlertnessLevel();
 
 	void setName(string name);
 	void setLevel(int level);

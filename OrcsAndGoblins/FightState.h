@@ -9,6 +9,8 @@ public:
 	virtual ~FightState();
 	void handle(Engine* context);
 private:
+	bool checkIfEnemyHasHP(Enemy* enemy);
+	void scheduleEnemyForRemoval(Enemy* enemy);
 	Room* currentRoom;
 	bool monstersLeft = true;
 };

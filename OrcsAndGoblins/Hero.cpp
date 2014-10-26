@@ -83,6 +83,20 @@ int Hero::getAlertnessXP() {
 	return m_alertnessXP;
 }
 
+int Hero::getAttackLevel()
+{
+	return ((m_attackXP + 10) / 10);
+}
+
+int Hero::getDefenseLevel()
+{
+	return ((m_attackXP + 10) / 10);
+}
+
+int Hero::getAlertnessLevel()
+{
+	return ((m_attackXP + 10) / 10);
+}
 void Hero::setName(string name) {
 	m_name = name;
 }

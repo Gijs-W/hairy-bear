@@ -49,7 +49,7 @@ std::string Rat::getMultipleDescription()
 
 int Rat::attack(int damage)
 {
-	int realdamage = (damage - (m_armor / 2));
+	int realdamage = (((damage * 100) - m_armor) / 100);
 	m_health = m_health - realdamage;
 	return realdamage;
 }
