@@ -1,5 +1,6 @@
 #pragma once
 #include "EngineState.h"
+#include "RoomViewState.h"
 #include "Room.h"
 class FightState : public EngineState
 {
@@ -9,5 +10,6 @@ public:
 	void handle(Engine* context);
 private:
 	Room* currentRoom;
+	bool monstersLeft = true;
 };
 

@@ -123,11 +123,11 @@
     <ClInclude Include="Rat.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="FightState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Skeleton.h">
       <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="FightState.h">
+      <Filter>Header Files\EngineState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -206,11 +206,11 @@
     <ClCompile Include="Rat.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="FightState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Skeleton.cpp">
       <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="FightState.cpp">
+      <Filter>Source Files\EngineState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

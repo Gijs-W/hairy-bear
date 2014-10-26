@@ -18,6 +18,10 @@ public:
 	virtual int getLevel();
 	virtual int getXP();
 	virtual int getFlightChance();
+	virtual int attack(int damage) = 0;
+	virtual int doAttack() = 0;
+	virtual std::string getDescription() =0;
+	virtual std::string getMultipleDescription() =0;
 private:
 	virtual void generateHealthAndLevel(int dungeonLevel) = 0;
 	std::string m_name;
@@ -25,6 +29,8 @@ private:
 	int m_flightChance;
 	int m_level;
 	int m_xpOnDeath;
+	int m_attack;
+	int m_armor;
 	EnemyType type;
 };
 

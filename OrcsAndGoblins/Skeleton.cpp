@@ -21,9 +21,37 @@ std::string Skeleton::getName()
 	return "skelet";
 }
 
+std::string Skeleton::getDescription()
+{
+	return ", hij zit je dodelijk aan te kijken met zijn lege oogkassen";
+}
+
+std::string Skeleton::getMultipleDescription()
+{
+	return ", ze ruiken je aanwezigheid en rennen naar je toe";
+}
+
 EnemyType Skeleton::getType()
 {
 	return EnemyType::Skeleton;
+}
+
+int Skeleton::getHealth()
+{
+	return m_health;
+}
+
+int Skeleton::doAttack()
+{
+	//todo
+	return 1;
+}
+
+int Skeleton::attack(int damage)
+{
+	int realdamage = (damage - (m_armor / 2));
+	m_health = m_health - realdamage;
+	return realdamage;
 }
 
 void Skeleton::generateHealthAndLevel(int dungeonLevel)
@@ -35,4 +63,6 @@ void Skeleton::generateHealthAndLevel(int dungeonLevel)
 	m_level = dungeonLevel * 3;
 	int m_baseFlightChance = 20;
 	m_flightChance = m_baseFlightChance / dungeonLevel;
+	int m_baseArmor = 8;
+	m_armor = m_baseArmor * dungeonLevel;
 }

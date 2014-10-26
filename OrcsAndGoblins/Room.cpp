@@ -178,9 +178,35 @@ std::string Room::getDescription() {
 	{
 		for (int i = 0; i < enemies->size(); i++)
 		{
-			description.append("In deze kamer staan ");
+			if (enemies->size() > 1)
+			{
+				description.append("In deze kamer staan ");
+			}
+			else
+			{
+				description.append("In deze kamer staat ");
+			}
 			description.append(std::to_string(numberOfEnemies) + " ");
-			description.append(enemies->at(i)->getName() + "(s)");
+			description.append(enemies->at(i)->getName());
+			if (enemies->size() > 1)
+			{
+				switch (enemies->at(i)->getType())
+				{
+				case(EnemyType::Goblin) :
+					description.append("s");
+				case(EnemyType::Orc) :
+					description.append("en");
+				case(EnemyType::Skeleton) :
+					description.append("ten");
+				case(EnemyType::Rat) :
+					description.append("ten");
+				}
+				description.append(enemies->at(i)->getMultipleDescription());
+			}
+			else
+			{
+				description.append(enemies->at(i)->getDescription());
+			}
 			description.append(".\n");
 		}
 	}

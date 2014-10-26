@@ -7,7 +7,12 @@ public:
 	virtual ~Rat();
 	Rat(int dungeonLevel);
 	EnemyType getType();
+	int getHealth();
 	std::string getName();
+	int doAttack();
+	int attack(int damage);
+	std::string getDescription();
+	std::string getMultipleDescription();
 private:
 	void generateHealthAndLevel(int dungeonLevel);
 	std::string m_name;
@@ -15,6 +20,8 @@ private:
 	int m_level;
 	int m_flightChance;
 	int m_xpOnDeath;
+	int m_attack;
+	int m_armor;
 	EnemyType type;
 };
 
