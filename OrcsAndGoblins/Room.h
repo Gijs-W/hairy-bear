@@ -7,6 +7,8 @@
 #include "Rat.h"
 #include "Skeleton.h"
 #include "Map.h"
+#include "MagicHealthPotion.h"
+#include "CupOfTea.h"
 
 enum RoomSize {
 	Small,
@@ -47,6 +49,7 @@ public:
 	void generateRoomContents();
 	bool lookForItems(Hero* hero);
 	std::vector<Enemy*>* getEnemies();
+	std::vector<Item*>* getItems();
 private:
 	RoomSize m_size;
 	RoomFilth m_filth;
@@ -57,6 +60,7 @@ private:
 	std::string description;
 	std::vector<MapType*>* corridors;
 	std::vector<Enemy*>* enemies;
+	std::vector<Item*>* items;
 	int chanceEnemies = 35;
 	int numberOfEnemies;
 	

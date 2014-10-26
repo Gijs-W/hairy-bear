@@ -40,9 +40,18 @@ void RoomViewState::handle(Engine* context) {
 		//flight state
 	}
 	else if (action == "zoeken") {
-		if (m_room->lookForItems(context->getHero())) {
-			printf("Je hebt spullen gevonden welke aan je inventory zijn toegevoegd.\n");
+
+		std::vector<Item*>* items = m_room->getItems();
+	
+		if (items->size() > 0) {
+			printf("Je hebt items gevonden:\n");
+
+			for (auto &item : *items) {
+				std::cout << "-" << item->getName() << std::endl;
+			}
+			m_room->lookForItems(context->getHero());
 		}
+
 		else {
 			printf("Niets gevonden.\n");
 		}

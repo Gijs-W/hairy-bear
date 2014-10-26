@@ -1,6 +1,7 @@
 #pragma once
+#include "stdafx.h"
+#include "Hero.h"
 
-#include "Engine.h"
 class Hero;
 class Item {
 public:
