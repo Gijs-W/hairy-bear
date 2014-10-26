@@ -364,6 +364,14 @@ void Map::Print() const
 		}
 		std::cout << std::endl;
 	}
+	printf("\nLegenda:");
+	printf("\nSpeler : @");
+	printf("\nOnontdekte ruimte : . ");
+	printf("\nKamer : 0");
+	printf("\nDoodlopende kamer: x");
+	printf("\nGang : | of -");
+	printf("\nTrap omhoog: U");
+	printf("\nTrap omlaag: D\n\n");
 }
 
 int xSize, ySize;
