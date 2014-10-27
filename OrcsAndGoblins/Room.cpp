@@ -5,6 +5,7 @@ Room::Room()
 {
 	corridors = new std::vector<MapType*>();
 	enemies = new std::vector<Enemy*>();
+	loadRoomDescriptions();
 	generateRoomContents();
 }
 
@@ -13,6 +14,7 @@ Room::Room(Tile type) : type(type)
 	corridors = new std::vector<MapType*>();
 	enemies = new std::vector<Enemy*>();
 	items = new std::vector < Item* > ;
+	loadRoomDescriptions();
 	generateRoomContents();
 }
 
@@ -150,50 +152,11 @@ std::string Room::getDescription() {
 	std::string contents;
 	std::string lightning;
 
-	switch (m_size) {
-	case Small:
-		size = "kleine";
-		break;
-	case Medium:
-		size = "normale";
-		break;
-	case Large:
-		size = "grote";
-		break;
-	}
+	size = room_size[m_size];
+	filth = room_filth[m_filth];
+	contents = room_furniture[m_furniture];
+	lightning = room_lightning[m_lightning];
 
-	switch (m_filth) {
-	case Dirty:
-		filth = "vieze";
-		break;
-	case Clean:
-		filth = "schone";
-		break;
-	}
-
-	switch (m_furniture) {
-	case Empty:
-		contents = "niets";
-		break;
-	case TableChair:
-		contents = "een tafel met vier stoelen";
-		break;
-	case Bed:
-		contents = "een bed";
-		break;
-	}
-
-	switch (m_lightning) {
-	case Torch:
-		lightning = "fakkel";
-		break;
-	case Candle:
-		lightning = "kaars";
-		break;
-	case Fireplace:
-		lightning = "haardvuur";
-		break;
-	}
 
 ///	char buffer[500];
 
@@ -247,5 +210,33 @@ std::string Room::getDescription() {
 		}
 	}
 	return description;
+
+}
+
+
+string Room::room_size[3] = {};
+string Room::room_filth[2] = {};
+string Room::room_lightning[3] = {};
+string Room::room_furniture[3] = {};
+
+void Room::loadRoomDescriptions() {
+
+	if (room_size[0].size() > 0) {
+		// File is al een keer ingelezen, dus we kunnen nu al stoppen;
+		return;
+	}
+
+	ifstream input_file("assets/room_size.txt");
+	input_file >> room_size[RoomSize::Small] >> room_size[RoomSize::Medium] >> room_size[RoomSize::Large];
+
+	ifstream input_file2("assets/room_filth.txt");
+	input_file2 >> room_filth[RoomFilth::Clean] >> room_filth[RoomFilth::Dirty];
+
+	ifstream input_file3("assets/room_lightning.txt");
+	input_file3 >> room_lightning[RoomLighting::Torch] >> room_lightning[RoomLighting::Candle] >> room_lightning[RoomLighting::Fireplace];
+
+	ifstream input_file4("assets/room_furniture.txt");
+	input_file4 >> room_furniture[RoomFurniture::Empty] >> room_furniture[RoomFurniture::TableChair] >> room_furniture[RoomFurniture::Bed];
+
 
 }

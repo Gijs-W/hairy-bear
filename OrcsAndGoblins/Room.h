@@ -9,6 +9,7 @@
 #include "Map.h"
 #include "MagicHealthPotion.h"
 #include "CupOfTea.h"
+#include <fstream>
 
 enum RoomSize {
 	Small,
@@ -63,6 +64,14 @@ private:
 	std::vector<Item*>* items;
 	int chanceEnemies = 35;
 	int numberOfEnemies;
+
+
+
+	static string room_size[3];
+	static string room_lightning[3];
+	static string room_furniture[3];
+	static string room_filth[2];
+	static void loadRoomDescriptions();
 	
 };
 
