@@ -132,6 +132,9 @@
     <ClInclude Include="FlightState.h">
       <Filter>Header Files\EngineState</Filter>
     </ClInclude>
+    <ClInclude Include="StairsViewState.h">
+      <Filter>Header Files\EngineState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -216,6 +219,9 @@
       <Filter>Source Files\EngineState</Filter>
     </ClCompile>
     <ClCompile Include="FlightState.cpp">
+      <Filter>Source Files\EngineState</Filter>
+    </ClCompile>
+    <ClCompile Include="StairsViewState.cpp">
       <Filter>Source Files\EngineState</Filter>
     </ClCompile>
   </ItemGroup>

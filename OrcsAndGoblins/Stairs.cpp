@@ -11,7 +11,7 @@ Stairs::~Stairs()
 {
 }
 
-Stairs::Stairs(int to, int from) : toLevel(to), fromLevel(from)
+Stairs::Stairs(int from, int to) : toLevel(to), fromLevel(from)
 {
 
 }

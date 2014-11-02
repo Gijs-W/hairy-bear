@@ -35,32 +35,33 @@ bool MapGenerator::MakeDungeon(Map& map, RngT& rng, int x, int y)
 		listMap->push_back(map);
 	}
 
-	//if (levels < 3)
-	//{
-	//	int nextLevel = levels++;
-	//	Map nextMap = Map(x * 2, y * 2, nextLevel, Tile::Unused);
-	//	MapType *stairs = MakeStairs(nextMap, rng, xStairs, yStairs, nextLevel - 2, Tile::StairsUp); // case : level 1 = stairs down (to level 2), level 2 = stairs up(to level 1 = nextLevel - 2), stairs down
-	//	MakeRoom(nextMap, rng, xStairs, yStairs, GetRandomDirection(rng), Tile::UndiscoveredRoom, stairs, nextLevel);
-	//	nextMap.checkEndRooms();
+	if (levels <= maxLevels)
+	{
+		int nextLevel = levels++;
+		Map nextMap = Map(x * 2, y * 2, nextLevel, Tile::Unused);
+		MapType *stairs = MakeStairs(nextMap, rng, xStairs, yStairs, nextLevel - 2, Tile::StairsUp); // case : level 1 = stairs down (to level 2), level 2 = stairs up(to level 1 = nextLevel - 2), stairs down
+		MakeRoom(nextMap, rng, xStairs, yStairs, GetRandomDirection(rng), Tile::UndiscoveredRoom, stairs, nextLevel);
+		nextMap.checkEndRooms();
 
-	//	MapType* c = getRandomFromCorridor(nextMap, rng);
-	//	if (c != nullptr)
-	//	{
-	//		if (c->getType() != Tile::StairsDown || c->getType() != Tile::StairsUp)
-	//		{
-	//			MakeStairs(nextMap, rng, c->getX(), c->getY(), nextLevel, Tile::StairsDown);
-	//			xStairs = c->getX();
-	//			yStairs = c->getY();
-	//		}
-	//	}
+		MapType* c = getRandomFromCorridor(nextMap, rng);
+		if (levels != maxLevels )
+		if (c != nullptr)
+		{
+			if (c->getType() != Tile::StairsDown || c->getType() != Tile::StairsUp)
+			{
+				MakeStairs(nextMap, rng, c->getX(), c->getY(), nextLevel, Tile::StairsDown);
+				xStairs = c->getX();
+				yStairs = c->getY();
+			}
+		}
 
-	//	//MakeStairs(map, rng, x, y, nextLevel - 2, Tile::StairsUp); // case : level 1 = stairs down (to level 2), level 2 = stairs up(to level 1 = nextLevel - 2), stairs down
-	//	//MakeStairs(map, rng, x, y, nextLevel, Tile::StairsDown);
+		//MakeStairs(map, rng, x, y, nextLevel - 2, Tile::StairsUp); // case : level 1 = stairs down (to level 2), level 2 = stairs up(to level 1 = nextLevel - 2), stairs down
+		//MakeStairs(map, rng, x, y, nextLevel, Tile::StairsDown);
 
-	//	listMap->push_back(nextMap);
+		listMap->push_back(nextMap);
 
-	//	MakeDungeon(nextMap, rng, x, y);
-	//}
+		MakeDungeon(nextMap, rng, x, y);
+	}
 	return false;
 }
 

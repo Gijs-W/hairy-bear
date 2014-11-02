@@ -47,6 +47,7 @@ public:
 	MapType* makeUnused(int x, int y);
 	MapType* getMapType(int x, int y);
 	static int currentLevel;
+	static void setcurrentLevel(int level);
 private:
 
 	bool checkIfEntityExists(int x, int y);

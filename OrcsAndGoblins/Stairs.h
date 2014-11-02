@@ -5,7 +5,7 @@ class Stairs : public MapType
 public:
 	Stairs();
 	virtual ~Stairs();
-	Stairs(int to, int from);
+	Stairs(int from, int to);
 	Tile getType();
 	void setVisited(bool visit);
 	bool getVisited();

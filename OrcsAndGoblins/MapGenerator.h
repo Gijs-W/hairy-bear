@@ -38,6 +38,7 @@ private:
 	MapType* getRandomFromCorridor(Map& map, RngT& rng);
 	Direction GetRandomDirection(RngT& rng);
 	int levels = 1;
+	int maxLevels = 5;
 	int xStairs;
 	int yStairs;
 

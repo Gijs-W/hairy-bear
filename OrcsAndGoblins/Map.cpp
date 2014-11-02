@@ -186,6 +186,7 @@ MapType* Map::makeStairs(int x, int y, int to, Tile type)
 {
 	if (checkIfEntityExists(x, y))
 		deleteFromEntities(x, y);
+
 	MapType *stair = new Stairs(level, to);
 	stair->setX(x);
 	stair->setY(y);
@@ -283,7 +284,10 @@ MapType* Map::makeCorridor(int x, int y, MapType* sourceRoom, MapType* targetRoo
 	return corridor;
 }
 
-
+void Map::setcurrentLevel(int level)
+{
+	currentLevel = level;
+}
 void Map::Print() const
 {
 	for (int j = 0; j < ySize; j++)

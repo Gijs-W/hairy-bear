@@ -49,9 +49,15 @@ void HeroWalkState::handleHeroPosition(Hero* hero, Engine* context ) {
 	Room* room = dynamic_cast<Room*>(maptype);
 
 	if (room) {
+		//room
 		context->setState(new RoomViewState(room));
 	}
 	else {
+		Stairs* stairs = dynamic_cast<Stairs*>(maptype);
+		if (stairs)
+		{
+			context->setState(new StairsViewState(stairs));
+		}
 		//context->setState(new RoomViewState(new Room()));
 		//context->setState(new MapDrawState());
 	}
