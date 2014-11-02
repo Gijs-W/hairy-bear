@@ -19,6 +19,24 @@
     <Filter Include="Source Files\EngineState">
       <UniqueIdentifier>{ec2d748c-faeb-43fe-aca9-52ba115f40e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\MapType">
+      <UniqueIdentifier>{4dbd62e9-0b49-4856-93a5-61302b2764bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MapType">
+      <UniqueIdentifier>{0f1a1b3d-ff2d-4d2f-9a28-0a9ef60a9750}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Item">
+      <UniqueIdentifier>{68f3ebdd-6757-4f3e-98b4-7b7db04c2ac6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item">
+      <UniqueIdentifier>{0dbf1572-60f3-423b-bbac-04466a84ece4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enemy">
+      <UniqueIdentifier>{e8730029-545d-4e33-a39b-5ce2734831a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemy">
+      <UniqueIdentifier>{c5cd2673-78f0-41d0-8f40-be6d654cd479}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -51,9 +69,6 @@
     <ClInclude Include="MapGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Room.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Hero.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -64,13 +79,55 @@
       <Filter>Header Files\EngineState</Filter>
     </ClInclude>
     <ClInclude Include="MapType.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\MapType</Filter>
     </ClInclude>
     <ClInclude Include="Corridor.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\MapType</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>Header Files\MapType</Filter>
     </ClInclude>
     <ClInclude Include="Unused.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\MapType</Filter>
+    </ClInclude>
+    <ClInclude Include="Stairs.h">
+      <Filter>Header Files\MapType</Filter>
+    </ClInclude>
+    <ClInclude Include="MapDrawState.h">
+      <Filter>Header Files\EngineState</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomViewState.h">
+      <Filter>Header Files\EngineState</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicHealthPotion.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CupOfTea.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryViewState.h">
+      <Filter>Header Files\EngineState</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Orc.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Goblin.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Rat.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Skeleton.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="FightState.h">
+      <Filter>Header Files\EngineState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +158,6 @@
     <ClCompile Include="MapGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Room.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Hero.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -111,13 +165,52 @@
       <Filter>Source Files\EngineState</Filter>
     </ClCompile>
     <ClCompile Include="MapType.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\MapType</Filter>
     </ClCompile>
     <ClCompile Include="Corridor.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\MapType</Filter>
     </ClCompile>
     <ClCompile Include="Unused.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\MapType</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>Source Files\MapType</Filter>
+    </ClCompile>
+    <ClCompile Include="Stairs.cpp">
+      <Filter>Source Files\MapType</Filter>
+    </ClCompile>
+    <ClCompile Include="MapDrawState.cpp">
+      <Filter>Source Files\EngineState</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomViewState.cpp">
+      <Filter>Source Files\EngineState</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicHealthPotion.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CupOfTea.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryViewState.cpp">
+      <Filter>Source Files\EngineState</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Orc.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Goblin.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Rat.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Skeleton.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="FightState.cpp">
+      <Filter>Source Files\EngineState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
