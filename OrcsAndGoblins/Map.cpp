@@ -28,7 +28,11 @@ Map::~Map()
 	//	delete allEntities->at(i);
 	//}
 	//delete allEntities;
-
+	//delete rooms;
+	//delete stairs;
+	//delete unuseds;
+	//delete corridors;
+	//delete roomCorridors;
 	//cant do this yet
 	/*for (int i = 0; i < rooms->size(); i++)
 	{
@@ -297,22 +301,6 @@ void Map::Print() const
 					}
 					else
 					{
-						//if (i == 10 && j == 9)
-						//{
-						//	printf("north");
-						//}
-						//else if (i == 10 && j == 11)
-						//{
-						//	printf("south");
-						//}
-						//else if (i == 11 && j == 10)
-						//{
-						//	printf("east");
-						//}
-						//else if (i == 9 && j == 10)
-						//{
-						//	printf("west");
-						//}
 						Tile t = r->getType();
 						switch (t)
 						{

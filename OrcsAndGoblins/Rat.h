@@ -10,7 +10,9 @@ public:
 	int getHealth();
 	std::string getName();
 	int doAttack();
+	int getXP();
 	int attack(int damage);
+	int getFlightChance();
 	std::string getDescription();
 	std::string getMultipleDescription();
 private:

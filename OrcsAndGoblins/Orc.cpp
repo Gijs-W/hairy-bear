@@ -21,6 +21,11 @@ std::string Orc::getName()
 	return "ork";
 }
 
+int Orc::getFlightChance()
+{
+	return m_flightChance;
+}
+
 std::string Orc::getDescription()
 {
 	return ", je ziet zijn varkensachtig gezicht met smerige, scherpe tanden";
@@ -41,10 +46,16 @@ int Orc::getHealth()
 	return m_health;
 }
 
+int Orc::getXP()
+{
+	return (m_level * 16);
+}
+
+
 int Orc::doAttack()
 {
 	//todo
-	return 1;
+	return (rand() % (m_level * 3));
 }
 
 int Orc::attack(int damage)

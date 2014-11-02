@@ -32,9 +32,10 @@ Room::~Room()
 	}
 	delete items;
 
-	for (auto corridor : *corridors) {
-		delete corridor;
-	}
+	//corridors get deleted in map
+	//for (auto corridor : *corridors) {
+	//	delete corridor;
+	//}
 	delete corridors;
 
 	for (auto enemy : *enemies) {

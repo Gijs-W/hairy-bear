@@ -37,7 +37,7 @@ void RoomViewState::handle(Engine* context) {
 	}
 	else if (action == "vluchten")
 	{
-		//flight state
+		context->setState(new FlightState(m_room));
 	}
 	else if (action == "zoeken") {
 

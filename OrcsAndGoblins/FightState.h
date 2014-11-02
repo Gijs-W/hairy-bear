@@ -1,6 +1,7 @@
 #pragma once
 #include "EngineState.h"
 #include "RoomViewState.h"
+#include "FlightState.h"
 #include "Room.h"
 class FightState : public EngineState
 {

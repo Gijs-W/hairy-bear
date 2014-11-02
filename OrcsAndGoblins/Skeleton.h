@@ -9,8 +9,10 @@ public:
 	EnemyType getType();
 	int getHealth();
 	std::string getName();
+	int getXP();
 	int doAttack();
 	int attack(int damage);
+	int getFlightChance();
 	std::string getDescription();
 	std::string getMultipleDescription();
 private:

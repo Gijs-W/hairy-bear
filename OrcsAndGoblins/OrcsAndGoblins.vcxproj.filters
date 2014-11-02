@@ -129,6 +129,9 @@
     <ClInclude Include="FightState.h">
       <Filter>Header Files\EngineState</Filter>
     </ClInclude>
+    <ClInclude Include="FlightState.h">
+      <Filter>Header Files\EngineState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -210,6 +213,9 @@
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="FightState.cpp">
+      <Filter>Source Files\EngineState</Filter>
+    </ClCompile>
+    <ClCompile Include="FlightState.cpp">
       <Filter>Source Files\EngineState</Filter>
     </ClCompile>
   </ItemGroup>

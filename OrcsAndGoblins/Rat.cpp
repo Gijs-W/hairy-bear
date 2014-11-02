@@ -21,6 +21,11 @@ std::string Rat::getName()
 	return "rat";
 }
 
+int Rat::getFlightChance()
+{
+	return m_flightChance;
+}
+
 EnemyType Rat::getType()
 {
 	return EnemyType::Rat;
@@ -31,10 +36,15 @@ int Rat::getHealth()
 	return m_health;
 }
 
+int Rat::getXP()
+{
+	return (m_level * 13);
+}
+
 int Rat::doAttack()
 {
 	//todo
-	return 1;
+	return (rand() % (m_level * 3));
 }
 
 std::string Rat::getDescription()

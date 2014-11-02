@@ -62,7 +62,7 @@ private:
 	std::vector<MapType*>* corridors;
 	std::vector<Enemy*>* enemies;
 	std::vector<Item*>* items;
-	int chanceEnemies = 35;
+	int chanceEnemies = 75;
 	int numberOfEnemies;
 
 

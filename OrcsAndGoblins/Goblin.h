@@ -8,9 +8,11 @@ public:
 	Goblin(int dungeonLevel);
 	EnemyType getType();
 	int getHealth();
+	int getXP();
 	std::string getName();
 	int doAttack();
 	int attack(int damage);
+	int getFlightChance();
 	std::string getDescription();
 	std::string getMultipleDescription();
 private:

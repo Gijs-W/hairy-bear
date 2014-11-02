@@ -21,6 +21,11 @@ std::string Skeleton::getName()
 	return "skelet";
 }
 
+int Skeleton::getFlightChance()
+{
+	return m_flightChance;
+}
+
 std::string Skeleton::getDescription()
 {
 	return ", hij zit je dodelijk aan te kijken met zijn lege oogkassen";
@@ -36,6 +41,11 @@ EnemyType Skeleton::getType()
 	return EnemyType::Skeleton;
 }
 
+int Skeleton::getXP()
+{
+	return (m_level * 17);
+}
+
 int Skeleton::getHealth()
 {
 	return m_health;
@@ -44,7 +54,7 @@ int Skeleton::getHealth()
 int Skeleton::doAttack()
 {
 	//todo
-	return 1;
+	return (rand() % (m_level * 3));
 }
 
 int Skeleton::attack(int damage)

@@ -31,7 +31,7 @@ void FightState::handle(Engine* context)
 		std::string action = InputManager::getInstance()->requestInput("Wat doe je?", expectedAnswers);
 		if (action == "vluchten")
 		{
-			//flight state
+			context->setState(new FlightState(currentRoom));
 		}
 		else if (action == "aanvallen")
 		{
@@ -50,6 +50,7 @@ void FightState::handle(Engine* context)
 					int m_realherodamage = (((m_herodamage * 100) - context->getHero()->getDefenseLevel()) / 100); //armor berekening
 					std::cout << enemies->at(i)->getName() + " " + std::to_string(i + 1) + " valt jou aan voor " + std::to_string(m_realherodamage) + " levenspunten" << std::endl;
 					context->getHero()->setHealth((context->getHero()->getHealth() - m_realherodamage));
+					std::cout << "Je hebt nog " + std::to_string(context->getHero()->getHealth()) + " levenspunten over" << std::endl;
 				}
 				else
 				{

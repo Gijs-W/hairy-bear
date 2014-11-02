@@ -86,6 +86,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="FightState.h" />
+    <ClInclude Include="FlightState.h" />
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="HeroWalkState.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FightState.cpp" />
+    <ClCompile Include="FlightState.cpp" />
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="HeroWalkState.cpp" />

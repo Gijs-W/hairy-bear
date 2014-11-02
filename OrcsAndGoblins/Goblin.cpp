@@ -31,6 +31,10 @@ std::string Goblin::getMultipleDescription()
 	return ", ze rennen naar je toe met hun messen en knuppels";
 }
 
+int Goblin::getFlightChance()
+{
+	return m_flightChance;
+}
 
 EnemyType Goblin::getType()
 {
@@ -45,7 +49,7 @@ int Goblin::getHealth()
 int Goblin::doAttack()
 {
 	//todo
-	return 1;
+	return (rand() % (m_level * 3));
 }
 
 int Goblin::attack(int damage)
@@ -53,6 +57,11 @@ int Goblin::attack(int damage)
 	int realdamage = (((damage * 100) - m_armor)/100);
 	m_health = m_health - realdamage;
 	return realdamage;
+}
+
+int Goblin::getXP()
+{
+	return (m_level * 15);
 }
 
 void Goblin::generateHealthAndLevel(int dungeonLevel)
