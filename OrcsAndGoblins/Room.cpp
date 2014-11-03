@@ -59,6 +59,8 @@ void Room::generateRoomContents() {
 	m_furniture = RoomFurniture(rand() % 3);
 	m_filth = RoomFilth(rand() % 2);
 
+	string descr;
+
 	EnemyType et = EnemyType(rand() % 4);
 
 	int count = rand() % (2 * (Map::currentLevel + 1));
@@ -77,13 +79,17 @@ void Room::generateRoomContents() {
 				{
 					string desc = orc_multiple_description[rand() % 5];
 					string desc1 = orc_multiple_enddescription[rand() % 3];
-					description = orc_multiple_init[1] + desc + desc1;
+					descr.append(orc_multiple_init[0]);
+					descr.append(desc);
+					descr.append(desc1);
 				}
 				else
 				{
 					string desc = orc_single_description[rand() % 5];
 					string desc1 = orc_single_enddescription[rand() % 3];
-					description = orc_single_init[1] + desc + desc1;
+					descr.append(orc_single_init[0]);
+					descr.append(desc);
+					descr.append(desc1);
 				}
 				break;
 			case(EnemyType::Rat) :
@@ -92,13 +98,17 @@ void Room::generateRoomContents() {
 				{
 					string desc = rat_multiple_description[rand() % 5];
 					string desc1 = rat_multiple_enddescription[rand() % 3];
-					description = rat_multiple_init[1] + desc + desc1;
+					descr.append(rat_multiple_init[0]);
+					descr.append(desc);
+					descr.append(desc1);
 				}
 				else
 				{
 					string desc = rat_single_description[rand() % 5];
 					string desc1 = rat_single_enddescription[rand() % 3];
-					description = rat_single_init[1] + desc + desc1;
+					descr.append(rat_single_init[0]);
+					descr.append(desc);
+					descr.append(desc1);
 				}
 				break;
 			case(EnemyType::Goblin) :
@@ -107,13 +117,17 @@ void Room::generateRoomContents() {
 				{
 					string desc = goblin_multiple_description[rand() % 5];
 					string desc1 = goblin_multiple_enddescription[rand() % 3];
-					description = goblin_multiple_init[1] + desc + desc1;
+					descr.append(goblin_multiple_init[0]);
+					descr.append(desc);
+					descr.append(desc1);
 				}
 				else
 				{
 					string desc = goblin_single_description[rand() % 5];
 					string desc1 = goblin_single_enddescription[rand() % 3];
-					description = goblin_single_init[1] + desc + desc1;
+					descr.append(goblin_single_init[0]);
+					descr.append(desc);
+					descr.append(desc1);
 				}
 				break;
 			case(EnemyType::Skeleton) :
@@ -122,18 +136,23 @@ void Room::generateRoomContents() {
 				{
 					string desc = skeleton_multiple_description[rand() % 5];
 					string desc1 = skeleton_multiple_enddescription[rand() % 3];
-					description = skeleton_multiple_init[1] + desc + desc1;
+					descr.append(skeleton_multiple_init[0]);
+					descr.append(desc);
+					descr.append(desc1);
 				}
 				else
 				{
 					string desc = skeleton_single_description[rand() % 5];
 					string desc1 = skeleton_single_enddescription[rand() % 3];
-					description = skeleton_single_init[1] + desc + desc1;
+					descr.append(skeleton_single_init[0]);
+					descr.append(desc);
+					descr.append(desc1);
 				}
 				break;
 			}
 			enemies->push_back(enemy);
 		}
+		enemydescription = descr;
 	}
 
 	int itemDice = rand() % 3;
@@ -337,27 +356,188 @@ void Room::loadEnemyDescriptions() {
 		return;
 	}
 
+	string line_content;
 	ifstream input_file("assets/orc_multiple.txt");
-	input_file >> orc_multiple_init[1] >> orc_multiple_description[1] >> orc_multiple_description[2] >> orc_multiple_description[3] >> orc_multiple_description[4] >> orc_multiple_description[5] >> orc_multiple_enddescription[1] >> orc_multiple_enddescription[2] >> orc_multiple_enddescription[3];
+	for (int i = 0; i < 9; i++)
+	{
+		getline(input_file, line_content);
+		if (i == 0)
+		{
+			orc_multiple_init[0] = line_content;
+		}
+		else if (i == 1 || i == 2 || i == 3 || i == 4 || i == 5)
+		{
+			orc_multiple_description[i-1] = line_content;
+		}
+		else if (i == 6 || i == 7 || i == 8)
+		{
+			if (i == 6)
+				orc_multiple_enddescription[0] = line_content;
+			if (i == 7)
+				orc_multiple_enddescription[1] = line_content;
+			if (i == 8)
+				orc_multiple_enddescription[2] = line_content;
+		}
+	}
 
 	ifstream input_file1("assets/orc_single.txt");
-	input_file1 >> orc_single_init[1] >> orc_single_description[1] >> orc_single_description[2] >> orc_single_description[3] >> orc_single_description[4] >> orc_single_description[5] >> orc_single_enddescription[1] >> orc_single_enddescription[2] >> orc_single_enddescription[3];
+	for (int i = 0; i < 9; i++)
+	{
+		getline(input_file1, line_content);
+		if (i == 0)
+		{
+			orc_single_init[0] = line_content;
+		}
+		else if (i == 1 || i == 2 || i == 3 || i == 4 || i == 5)
+		{
+			orc_single_description[i-1] = line_content;
+		}
+		else if (i == 6 || i == 7 || i == 8)
+		{
+			if (i == 6)
+				orc_single_enddescription[0] = line_content;
+			if (i == 7)
+				orc_single_enddescription[1] = line_content;
+			if (i == 8)
+				orc_single_enddescription[2] = line_content;
+		}
+	}
 
 	ifstream input_file2("assets/rat_multiple.txt");
-	input_file2 >> rat_multiple_init[1] >> rat_multiple_description[1] >> rat_multiple_description[2] >> rat_multiple_description[3] >> rat_multiple_description[4] >> rat_multiple_description[5] >> rat_multiple_enddescription[1] >> rat_multiple_enddescription[2] >> rat_multiple_enddescription[3];
+	for (int i = 0; i < 9; i++)
+	{
+		getline(input_file2, line_content);
+		if (i == 0)
+		{
+			rat_multiple_init[0] = line_content;
+		}
+		else if (i == 1 || i == 2 || i == 3 || i == 4 || i == 5)
+		{
+			rat_multiple_description[i-1] = line_content;
+		}
+		else if (i == 6 || i == 7 || i == 8)
+		{
+			if (i == 6)
+				rat_multiple_enddescription[0] = line_content;
+			if (i == 7)
+				rat_multiple_enddescription[1] = line_content;
+			if (i == 8)
+				rat_multiple_enddescription[2] = line_content;
+		}
+	}
 
 	ifstream input_file3("assets/rat_single.txt");
-	input_file3 >> rat_single_init[1] >> rat_single_description[1] >> rat_single_description[2] >> rat_single_description[3] >> rat_single_description[4] >> rat_single_description[5] >> rat_single_enddescription[1] >> rat_single_enddescription[2] >> rat_single_enddescription[3];
+	for (int i = 0; i < 9; i++)
+	{
+		getline(input_file3, line_content);
+		if (i == 0)
+		{
+			rat_single_init[0] = line_content;
+		}
+		else if (i == 1 || i == 2 || i == 3 || i == 4 || i == 5)
+		{
+			rat_single_description[i-1] = line_content;
+		}
+		else if (i == 6 || i == 7 || i == 8)
+		{
+			if (i == 6)
+				rat_single_enddescription[0] = line_content;
+			if (i == 7)
+				rat_single_enddescription[1] = line_content;
+			if (i == 8)
+				rat_single_enddescription[2] = line_content;
+		}
+	}
 
 	ifstream input_file4("assets/goblin_multiple.txt");
-	input_file4 >> goblin_multiple_init[1] >> goblin_multiple_description[1] >> goblin_multiple_description[2] >> goblin_multiple_description[3] >> goblin_multiple_description[4] >> goblin_multiple_description[5] >> goblin_multiple_enddescription[1] >> goblin_multiple_enddescription[2] >> goblin_multiple_enddescription[3];
+	for (int i = 0; i < 9; i++)
+	{
+		getline(input_file4, line_content);
+		if (i == 0)
+		{
+			goblin_multiple_init[0] = line_content;
+		}
+		else if (i == 1 || i == 2 || i == 3 || i == 4 || i == 5)
+		{
+			goblin_multiple_description[i-1] = line_content;
+		}
+		else if (i == 6 || i == 7 || i == 8)
+		{
+			if (i == 6)
+				goblin_multiple_enddescription[0] = line_content;
+			if (i == 7)
+				goblin_multiple_enddescription[1] = line_content;
+			if (i == 8)
+				goblin_multiple_enddescription[2] = line_content;
+		}
+	}
 
 	ifstream input_file5("assets/goblin_single.txt");
-	input_file5 >> goblin_single_init[1] >> goblin_single_description[1] >> goblin_single_description[2] >> goblin_single_description[3] >> goblin_single_description[4] >> goblin_single_description[5] >> goblin_single_enddescription[1] >> goblin_single_enddescription[2] >> goblin_single_enddescription[3];
+	for (int i = 0; i < 9; i++)
+	{
+		getline(input_file5, line_content);
+		if (i == 0)
+		{
+			goblin_single_init[0] = line_content;
+		}
+		else if (i == 1 || i == 2 || i == 3 || i == 4 || i == 5)
+		{
+			goblin_single_description[i-1] = line_content;
+		}
+		else if (i == 6 || i == 7 || i == 8)
+		{
+			if (i == 6)
+				goblin_single_enddescription[0] = line_content;
+			if (i == 7)
+				goblin_single_enddescription[1] = line_content;
+			if (i == 8)
+				goblin_single_enddescription[2] = line_content;
+		}
+	}
 
 	ifstream input_file6("assets/skeleton_multiple.txt");
-	input_file6 >> skeleton_multiple_init[1] >> skeleton_multiple_description[1] >> skeleton_multiple_description[2] >> skeleton_multiple_description[3] >> skeleton_multiple_description[4] >> skeleton_multiple_description[5] >> rat_multiple_enddescription[1] >> rat_multiple_enddescription[2] >> rat_multiple_enddescription[3];
+	for (int i = 0; i < 9; i++)
+	{
+		getline(input_file6, line_content);
+		if (i == 0)
+		{
+			skeleton_multiple_init[0] = line_content;
+		}
+		else if (i == 1 || i == 2 || i == 3 || i == 4 || i == 5)
+		{
+			skeleton_multiple_description[i-1] = line_content;
+		}
+		else if (i == 6 || i == 7 || i == 8)
+		{
+			if (i == 6)
+				skeleton_multiple_enddescription[0] = line_content;
+			if (i == 7)
+				skeleton_multiple_enddescription[1] = line_content;
+			if (i == 8)
+				skeleton_multiple_enddescription[2] = line_content;
+		}
+	}
 
 	ifstream input_file7("assets/skeleton_single.txt");
-	input_file7 >> skeleton_single_init[1] >> skeleton_single_description[1] >> skeleton_single_description[2] >> skeleton_single_description[3] >> skeleton_single_description[4] >> skeleton_single_description[5] >> skeleton_single_enddescription[1] >> skeleton_single_enddescription[2] >> skeleton_single_enddescription[3];
+	for (int i = 0; i < 9; i++)
+	{
+		getline(input_file7, line_content);
+		if (i == 0)
+		{
+			skeleton_single_init[0] = line_content;
+		}
+		else if (i == 1 || i == 2 || i == 3 || i == 4 || i == 5)
+		{
+			skeleton_single_description[i - 1] = line_content;
+		}
+		else
+		{
+			if (i == 6)
+				skeleton_single_enddescription[0] = line_content;
+			if (i == 7)
+				skeleton_single_enddescription[1] = line_content;
+			if (i == 8)
+				skeleton_single_enddescription[2] = line_content;
+		}
+	}
 }
