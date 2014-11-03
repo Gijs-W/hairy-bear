@@ -147,7 +147,7 @@
     <ClInclude Include="BearTrap.h">
       <Filter>Header Files\Trap</Filter>
     </ClInclude>
-    <ClInclude Include="FlamesOfUdun.h">
+    <ClInclude Include="Flames.h">
       <Filter>Header Files\Trap</Filter>
     </ClInclude>
   </ItemGroup>
@@ -242,7 +242,7 @@
     <ClCompile Include="BearTrap.cpp">
       <Filter>Source Files\Trap</Filter>
     </ClCompile>
-    <ClCompile Include="FlamesOfUdun.cpp">
+    <ClCompile Include="Flames.cpp">
       <Filter>Source Files\Trap</Filter>
     </ClCompile>
   </ItemGroup>

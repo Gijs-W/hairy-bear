@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "BearTrap.h"
 
 string BearTrap::getName() {

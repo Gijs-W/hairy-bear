@@ -1,7 +1,7 @@
 #pragma once
 #include "Trap.h"
 
-class FlamesOfUdun : public Trap {
+class Flames : public Trap {
 
 private:
 	const int damage = 5;

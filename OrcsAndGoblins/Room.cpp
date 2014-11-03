@@ -6,6 +6,7 @@ Room::Room()
 	corridors = new std::vector<MapType*>();
 	enemies = new std::vector<Enemy*>();
 	items = new std::vector < Item* >;
+	traps = new std::vector < Trap* > ;
 	loadRoomDescriptions();
 	generateRoomContents();
 }
@@ -15,6 +16,7 @@ Room::Room(Tile type) : type(type)
 	corridors = new std::vector<MapType*>();
 	enemies = new std::vector<Enemy*>();
 	items = new std::vector < Item* > ;
+	traps = new std::vector < Trap* >;
 	loadRoomDescriptions();
 	generateRoomContents();
 }
@@ -95,14 +97,14 @@ void Room::generateRoomContents() {
 		break;
 	}
 
-	int trapDice = rand() % 5;
+	int trapDice = rand() % 3;
 
 	switch (trapDice) {
 	case 0:
 		traps->push_back(new BearTrap());
 		break;
 	case 1:
-		traps->push_back(new FlamesOfUdun());
+		traps->push_back(new Flames());
 		break;
 	}
 }

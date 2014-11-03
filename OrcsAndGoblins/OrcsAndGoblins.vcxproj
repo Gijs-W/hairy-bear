@@ -87,7 +87,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="FightState.h" />
-    <ClInclude Include="FlamesOfUdun.h" />
+    <ClInclude Include="Flames.h" />
     <ClInclude Include="FlightState.h" />
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="Hero.h" />
@@ -122,7 +122,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FightState.cpp" />
-    <ClCompile Include="FlamesOfUdun.cpp" />
+    <ClCompile Include="Flames.cpp" />
     <ClCompile Include="FlightState.cpp" />
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="Hero.cpp" />

@@ -10,7 +10,7 @@
 #include "MagicHealthPotion.h"
 #include "CupOfTea.h"
 #include "Trap.h"
-#include "FlamesOfUdun.h"
+#include "Flames.h"
 #include "BearTrap.h"
 #include <fstream>
 
