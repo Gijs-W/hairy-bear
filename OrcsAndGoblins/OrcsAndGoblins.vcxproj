@@ -79,6 +79,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BearTrap.h" />
     <ClInclude Include="Corridor.h" />
     <ClInclude Include="CupOfTea.h" />
     <ClInclude Include="Dungeon.h" />
@@ -86,6 +87,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="FightState.h" />
+    <ClInclude Include="FlamesOfUdun.h" />
     <ClInclude Include="FlightState.h" />
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="Hero.h" />
@@ -109,15 +111,18 @@
     <ClInclude Include="StairsViewState.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Trap.h" />
     <ClInclude Include="Unused.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BearTrap.cpp" />
     <ClCompile Include="Corridor.cpp" />
     <ClCompile Include="CupOfTea.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FightState.cpp" />
+    <ClCompile Include="FlamesOfUdun.cpp" />
     <ClCompile Include="FlightState.cpp" />
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="Hero.cpp" />

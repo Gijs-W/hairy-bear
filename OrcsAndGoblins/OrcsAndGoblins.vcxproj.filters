@@ -37,6 +37,12 @@
     <Filter Include="Source Files\Enemy">
       <UniqueIdentifier>{c5cd2673-78f0-41d0-8f40-be6d654cd479}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Trap">
+      <UniqueIdentifier>{3cd9a63c-0c03-42df-afcb-d7d1a58d0173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Trap">
+      <UniqueIdentifier>{0abcf1f6-83ad-46e6-bb6a-1385ea587e41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -135,6 +141,15 @@
     <ClInclude Include="StairsViewState.h">
       <Filter>Header Files\EngineState</Filter>
     </ClInclude>
+    <ClInclude Include="Trap.h">
+      <Filter>Header Files\Trap</Filter>
+    </ClInclude>
+    <ClInclude Include="BearTrap.h">
+      <Filter>Header Files\Trap</Filter>
+    </ClInclude>
+    <ClInclude Include="FlamesOfUdun.h">
+      <Filter>Header Files\Trap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -223,6 +238,12 @@
     </ClCompile>
     <ClCompile Include="StairsViewState.cpp">
       <Filter>Source Files\EngineState</Filter>
+    </ClCompile>
+    <ClCompile Include="BearTrap.cpp">
+      <Filter>Source Files\Trap</Filter>
+    </ClCompile>
+    <ClCompile Include="FlamesOfUdun.cpp">
+      <Filter>Source Files\Trap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

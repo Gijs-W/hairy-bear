@@ -5,6 +5,7 @@ Room::Room()
 {
 	corridors = new std::vector<MapType*>();
 	enemies = new std::vector<Enemy*>();
+	items = new std::vector < Item* >;
 	loadRoomDescriptions();
 	generateRoomContents();
 }
@@ -42,6 +43,11 @@ Room::~Room()
 		delete enemy;
 	}
 	delete enemies;
+
+	for (auto trap : *traps) {
+		delete trap;
+	}
+	delete traps;
 }
 
 void Room::generateRoomContents() {
@@ -79,13 +85,24 @@ void Room::generateRoomContents() {
 		}
 	}
 
-	int itemDice = rand() % 1;
+	int itemDice = rand() % 3;
 	switch (itemDice) {
 	case 0:
 		items->push_back(new MagicHealthPotion);
 		break;
 	case 1:
 		items->push_back(new CupOfTea);
+		break;
+	}
+
+	int trapDice = rand() % 5;
+
+	switch (trapDice) {
+	case 0:
+		traps->push_back(new BearTrap());
+		break;
+	case 1:
+		traps->push_back(new FlamesOfUdun());
 		break;
 	}
 }
@@ -103,6 +120,17 @@ void Room::addCorridor(MapType* corridor)
 std::vector<MapType*>* Room::getCorridors()
 {
 	return corridors;
+}
+
+std::vector<Trap*>* Room::getTraps() {
+	return traps;
+}
+
+void Room::dismantleTraps() {
+	for (auto trap : *traps) {
+		delete trap;
+	}
+	traps->clear();
 }
 
 void Room::setVisited(bool visit)

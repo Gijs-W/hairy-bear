@@ -55,6 +55,19 @@ void RoomViewState::handle(Engine* context) {
 		else {
 			printf("Niets gevonden.\n");
 		}
+
+		std::vector<Trap*>* traps = m_room->getTraps();
+
+		if (traps->size() > 0) {
+			printf("Er zitten vallen in de kamer die je pijn gedaan hebben!:\n");
+
+			for (auto &trap : *traps) {
+				std::cout << "-" << trap->getName() << std::endl;
+				trap->hurt(context->getHero());
+			}
+
+			m_room->dismantleTraps();
+		}
 	}
 	else if (action == "blijven") {
 		if (context->getHero()->regenerateHealth()) {

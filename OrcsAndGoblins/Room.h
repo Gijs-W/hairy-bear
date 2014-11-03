@@ -9,6 +9,9 @@
 #include "Map.h"
 #include "MagicHealthPotion.h"
 #include "CupOfTea.h"
+#include "Trap.h"
+#include "FlamesOfUdun.h"
+#include "BearTrap.h"
 #include <fstream>
 
 enum RoomSize {
@@ -51,6 +54,8 @@ public:
 	bool lookForItems(Hero* hero);
 	std::vector<Enemy*>* getEnemies();
 	std::vector<Item*>* getItems();
+	std::vector<Trap*>* getTraps();
+	void dismantleTraps();
 private:
 	RoomSize m_size;
 	RoomFilth m_filth;
@@ -62,6 +67,7 @@ private:
 	std::vector<MapType*>* corridors;
 	std::vector<Enemy*>* enemies;
 	std::vector<Item*>* items;
+	std::vector<Trap*>* traps;
 	int chanceEnemies = 75;
 	int numberOfEnemies;
 
