@@ -18,6 +18,7 @@ Room::Room(Tile type) : type(type)
 	items = new std::vector < Item* > ;
 	traps = new std::vector < Trap* >;
 	loadRoomDescriptions();
+	loadEnemyDescriptions();
 	generateRoomContents();
 }
 
@@ -70,17 +71,65 @@ void Room::generateRoomContents() {
 			Enemy* enemy = nullptr;
 			switch (et)
 			{
-			case(EnemyType::Orc):
+			case(EnemyType::Orc) :
 				enemy = new Orc((Map::currentLevel + 1));
+				if (count > 1)
+				{
+					string desc = orc_multiple_description[rand() % 5];
+					string desc1 = orc_multiple_enddescription[rand() % 3];
+					description = orc_multiple_init[1] + desc + desc1;
+				}
+				else
+				{
+					string desc = orc_single_description[rand() % 5];
+					string desc1 = orc_single_enddescription[rand() % 3];
+					description = orc_single_init[1] + desc + desc1;
+				}
 				break;
 			case(EnemyType::Rat) :
 				enemy = new Rat((Map::currentLevel + 1));
+				if (count > 1)
+				{
+					string desc = rat_multiple_description[rand() % 5];
+					string desc1 = rat_multiple_enddescription[rand() % 3];
+					description = rat_multiple_init[1] + desc + desc1;
+				}
+				else
+				{
+					string desc = rat_single_description[rand() % 5];
+					string desc1 = rat_single_enddescription[rand() % 3];
+					description = rat_single_init[1] + desc + desc1;
+				}
 				break;
 			case(EnemyType::Goblin) :
 				enemy = new Goblin((Map::currentLevel + 1));
+				if (count > 1)
+				{
+					string desc = goblin_multiple_description[rand() % 5];
+					string desc1 = goblin_multiple_enddescription[rand() % 3];
+					description = goblin_multiple_init[1] + desc + desc1;
+				}
+				else
+				{
+					string desc = goblin_single_description[rand() % 5];
+					string desc1 = goblin_single_enddescription[rand() % 3];
+					description = goblin_single_init[1] + desc + desc1;
+				}
 				break;
 			case(EnemyType::Skeleton) :
 				enemy = new Skeleton((Map::currentLevel + 1));
+				if (count > 1)
+				{
+					string desc = skeleton_multiple_description[rand() % 5];
+					string desc1 = skeleton_multiple_enddescription[rand() % 3];
+					description = skeleton_multiple_init[1] + desc + desc1;
+				}
+				else
+				{
+					string desc = skeleton_single_description[rand() % 5];
+					string desc1 = skeleton_single_enddescription[rand() % 3];
+					description = skeleton_single_init[1] + desc + desc1;
+				}
 				break;
 			}
 			enemies->push_back(enemy);
@@ -217,26 +266,7 @@ std::string Room::getDescription() {
 				description.append("In deze kamer staat ");
 			}
 			description.append(std::to_string(numberOfEnemies) + " ");
-			description.append(enemies->at(i)->getName());
-			if (enemies->size() > 1)
-			{
-				switch (enemies->at(i)->getType())
-				{
-				case(EnemyType::Goblin) :
-					description.append("s");
-				case(EnemyType::Orc) :
-					description.append("en");
-				case(EnemyType::Skeleton) :
-					description.append("ten");
-				case(EnemyType::Rat) :
-					description.append("ten");
-				}
-				description.append(enemies->at(i)->getMultipleDescription());
-			}
-			else
-			{
-				description.append(enemies->at(i)->getDescription());
-			}
+			description.append(enemydescription);
 			description.append(".\n");
 		}
 	}
@@ -270,4 +300,64 @@ void Room::loadRoomDescriptions() {
 	input_file4 >> room_furniture[RoomFurniture::Empty] >> room_furniture[RoomFurniture::TableChair] >> room_furniture[RoomFurniture::Bed];
 
 
+}
+
+string Room::orc_multiple_init[1] = {};
+string Room::orc_single_init[1] = {};
+string Room::orc_multiple_description[5] = {};
+string Room::orc_multiple_enddescription[3] = {};
+string Room::orc_single_description[5] = {};
+string Room::orc_single_enddescription[3] = {};
+
+string Room::rat_multiple_init[1] = {};
+string Room::rat_single_init[1] = {};
+string Room::rat_multiple_description[5] = {};
+string Room::rat_multiple_enddescription[3] = {};
+string Room::rat_single_description[5] = {};
+string Room::rat_single_enddescription[3] = {};
+
+string Room::goblin_multiple_init[1] = {};
+string Room::goblin_single_init[1] = {};
+string Room::goblin_multiple_description[5] = {};
+string Room::goblin_multiple_enddescription[3] = {};
+string Room::goblin_single_description[5] = {};
+string Room::goblin_single_enddescription[3] = {};
+
+string Room::skeleton_multiple_init[1] = {};
+string Room::skeleton_single_init[1] = {};
+string Room::skeleton_multiple_description[5] = {};
+string Room::skeleton_multiple_enddescription[3] = {};
+string Room::skeleton_single_description[5] = {};
+string Room::skeleton_single_enddescription[3] = {};
+
+void Room::loadEnemyDescriptions() {
+
+	if (orc_multiple_init[0].size() > 0) {
+		// File is al een keer ingelezen, dus we kunnen nu al stoppen;
+		return;
+	}
+
+	ifstream input_file("assets/orc_multiple.txt");
+	input_file >> orc_multiple_init[1] >> orc_multiple_description[1] >> orc_multiple_description[2] >> orc_multiple_description[3] >> orc_multiple_description[4] >> orc_multiple_description[5] >> orc_multiple_enddescription[1] >> orc_multiple_enddescription[2] >> orc_multiple_enddescription[3];
+
+	ifstream input_file1("assets/orc_single.txt");
+	input_file1 >> orc_single_init[1] >> orc_single_description[1] >> orc_single_description[2] >> orc_single_description[3] >> orc_single_description[4] >> orc_single_description[5] >> orc_single_enddescription[1] >> orc_single_enddescription[2] >> orc_single_enddescription[3];
+
+	ifstream input_file2("assets/rat_multiple.txt");
+	input_file2 >> rat_multiple_init[1] >> rat_multiple_description[1] >> rat_multiple_description[2] >> rat_multiple_description[3] >> rat_multiple_description[4] >> rat_multiple_description[5] >> rat_multiple_enddescription[1] >> rat_multiple_enddescription[2] >> rat_multiple_enddescription[3];
+
+	ifstream input_file3("assets/rat_single.txt");
+	input_file3 >> rat_single_init[1] >> rat_single_description[1] >> rat_single_description[2] >> rat_single_description[3] >> rat_single_description[4] >> rat_single_description[5] >> rat_single_enddescription[1] >> rat_single_enddescription[2] >> rat_single_enddescription[3];
+
+	ifstream input_file4("assets/goblin_multiple.txt");
+	input_file4 >> goblin_multiple_init[1] >> goblin_multiple_description[1] >> goblin_multiple_description[2] >> goblin_multiple_description[3] >> goblin_multiple_description[4] >> goblin_multiple_description[5] >> goblin_multiple_enddescription[1] >> goblin_multiple_enddescription[2] >> goblin_multiple_enddescription[3];
+
+	ifstream input_file5("assets/goblin_single.txt");
+	input_file5 >> goblin_single_init[1] >> goblin_single_description[1] >> goblin_single_description[2] >> goblin_single_description[3] >> goblin_single_description[4] >> goblin_single_description[5] >> goblin_single_enddescription[1] >> goblin_single_enddescription[2] >> goblin_single_enddescription[3];
+
+	ifstream input_file6("assets/skeleton_multiple.txt");
+	input_file6 >> skeleton_multiple_init[1] >> skeleton_multiple_description[1] >> skeleton_multiple_description[2] >> skeleton_multiple_description[3] >> skeleton_multiple_description[4] >> skeleton_multiple_description[5] >> rat_multiple_enddescription[1] >> rat_multiple_enddescription[2] >> rat_multiple_enddescription[3];
+
+	ifstream input_file7("assets/skeleton_single.txt");
+	input_file7 >> skeleton_single_init[1] >> skeleton_single_description[1] >> skeleton_single_description[2] >> skeleton_single_description[3] >> skeleton_single_description[4] >> skeleton_single_description[5] >> skeleton_single_enddescription[1] >> skeleton_single_enddescription[2] >> skeleton_single_enddescription[3];
 }

@@ -70,9 +70,43 @@ private:
 	std::vector<Trap*>* traps;
 	int chanceEnemies = 75;
 	int numberOfEnemies;
+	std::string enemydescription;
 
+	//orc
+	static string orc_multiple_init[1];
+	static string orc_single_init[1];
+	static string orc_multiple_description[5];
+	static string orc_multiple_enddescription[3];
+	static string orc_single_description[5];
+	static string orc_single_enddescription[3];
 
+	//rat
+	static string rat_multiple_init[1];
+	static string rat_single_init[1];
+	static string rat_multiple_description[5];
+	static string rat_multiple_enddescription[3];
+	static string rat_single_description[5];
+	static string rat_single_enddescription[3];
 
+	//goblin
+	static string goblin_multiple_init[1];
+	static string goblin_single_init[1];
+	static string goblin_multiple_description[5];
+	static string goblin_multiple_enddescription[3];
+	static string goblin_single_description[5];
+	static string goblin_single_enddescription[3];
+
+	//skeleton
+	static string skeleton_multiple_init[1];
+	static string skeleton_single_init[1];
+	static string skeleton_multiple_description[5];
+	static string skeleton_multiple_enddescription[3];
+	static string skeleton_single_description[5];
+	static string skeleton_single_enddescription[3];
+
+	static void loadEnemyDescriptions();
+
+	//rooms
 	static string room_size[3];
 	static string room_lightning[3];
 	static string room_furniture[3];
