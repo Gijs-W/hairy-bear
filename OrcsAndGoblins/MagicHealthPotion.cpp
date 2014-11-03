@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "MagicHealthPotion.h"
 string MagicHealthPotion::getName() {
-	return "magisch levensdrankje";
+	return generateRandomPrefix().append("magisch levensdrankje");
 }
 
 void MagicHealthPotion::use(Hero* hero) {

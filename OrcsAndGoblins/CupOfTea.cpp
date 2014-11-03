@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CupOfTea.h"
 string CupOfTea::getName() {
-	return "kopje thee";
+	return generateRandomPrefix().append("kopje thee");
 }
 
 void CupOfTea::use(Hero* hero) {

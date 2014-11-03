@@ -4,6 +4,9 @@
 
 class Hero;
 class Item {
+
+protected:
+	string generateRandomPrefix();
 public:
 
 	virtual string getName() = 0;

@@ -129,6 +129,7 @@
     <ClCompile Include="HeroWalkState.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="InventoryViewState.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="MagicHealthPotion.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
