@@ -28,6 +28,7 @@ public:
 
 private:
 	typedef std::mt19937 RngT;
+	void clearListMap();
 	bool checkIfUnused(Map& map,int x, int y);
 	bool MakeDungeon(Map& map, RngT& rng, int x, int y);
 	MapType* MakeStairs(Map& map, RngT& rng, int x, int y, int toLevel, Tile type);

@@ -12,8 +12,17 @@ MapGenerator::~MapGenerator()
 	delete listMap;
 }
 
+void MapGenerator::clearListMap()
+{
+	for (int i = 0; i < listMap->size(); i++)
+	{
+		delete listMap->at(i);
+	}
+}
+
 std::vector<Map*>* MapGenerator::generate()
 {
+	clearListMap();
 	auto rng = RngT(rngSeed);
 	Map* map = new Map(x, y, 1,Tile::Unused);
 	MakeDungeon(*map, rng, x/2, y/2); //x/2 + y/2 for very first level

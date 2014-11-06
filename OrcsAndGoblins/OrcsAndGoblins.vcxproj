@@ -82,6 +82,7 @@
     <ClInclude Include="BearTrap.h" />
     <ClInclude Include="Corridor.h" />
     <ClInclude Include="CupOfTea.h" />
+    <ClInclude Include="DieState.h" />
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine.h" />
@@ -119,6 +120,7 @@
     <ClCompile Include="BearTrap.cpp" />
     <ClCompile Include="Corridor.cpp" />
     <ClCompile Include="CupOfTea.cpp" />
+    <ClCompile Include="DieState.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />

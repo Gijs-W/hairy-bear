@@ -2,6 +2,7 @@
 #include "EngineState.h"
 #include "RoomViewState.h"
 #include "FlightState.h"
+#include "DieState.h"
 #include "Room.h"
 class FightState : public EngineState
 {
