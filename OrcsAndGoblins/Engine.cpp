@@ -3,11 +3,10 @@
 
 
 Engine::Engine() {
-	//m_state = new MapDrawState();
+	m_mapgen = new MapGenerator;
 }
 
 Engine::~Engine() {
-    //actors.clearAndDelete();
 	delete m_hero;
 	delete m_mapgen;
 	delete m_state;
@@ -15,8 +14,6 @@ Engine::~Engine() {
 }
 
 void Engine::render() {
-    // draw the map
-   // map->render();
 
 }
 

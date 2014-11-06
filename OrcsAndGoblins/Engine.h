@@ -12,7 +12,7 @@
 class Engine {
 private:
 	Hero* m_hero;
-	MapGenerator* m_mapgen = new MapGenerator;
+	MapGenerator* m_mapgen;
 	std::vector<Map>* m_maps;
 	EngineState* m_state = nullptr;
 	bool m_running = true;

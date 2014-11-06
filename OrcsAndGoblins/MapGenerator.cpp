@@ -5,6 +5,8 @@
 
 MapGenerator::~MapGenerator()
 {
+	listMap->clear();
+	delete listMap;
 }
 
 std::vector<Map>* MapGenerator::generate()

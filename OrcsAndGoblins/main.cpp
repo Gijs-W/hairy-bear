@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include <windows.h>
-//#include <vld.h>
+#include <vld.h>
 #include "Engine.h"
-
-
 
 int main()
 {
@@ -20,6 +18,6 @@ int main()
 	engine->initHero();
 	engine->initMap();
 	engine->loop();
-	
+	delete engine;
 	return 0;
 }
