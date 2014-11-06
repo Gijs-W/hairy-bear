@@ -15,10 +15,10 @@ FlightState::~FlightState()
 void FlightState::handle(Engine* context)
 {
 	Hero* hero = context->getHero();
-	MapType* northMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX(), hero->getPosY() - 1);
-	MapType* southMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX(), hero->getPosY() + 1);
-	MapType* eastMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX() + 1, hero->getPosY());
-	MapType* westMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX() - 1, hero->getPosY());
+	MapType* northMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX(), hero->getPosY() - 1);
+	MapType* southMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX(), hero->getPosY() + 1);
+	MapType* eastMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX() + 1, hero->getPosY());
+	MapType* westMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX() - 1, hero->getPosY());
 
 	if (checkIfCanFlight())
 	{

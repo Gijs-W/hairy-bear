@@ -3,10 +3,10 @@
 #include "RoomViewState.h"
 void HeroWalkState::handle(Engine* context) {
 	Hero* hero = context->getHero();
-	MapType* northMap = context->getMaps()->at(Map::currentLevel -1).getMapType(hero->getPosX(), hero->getPosY() - 1);
-	MapType* southMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX(), hero->getPosY() + 1);
-	MapType* eastMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX() + 1, hero->getPosY());
-	MapType* westMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX() - 1, hero->getPosY());
+	MapType* northMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX(), hero->getPosY() - 1);
+	MapType* southMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX(), hero->getPosY() + 1);
+	MapType* eastMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX() + 1, hero->getPosY());
+	MapType* westMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX() - 1, hero->getPosY());
 
 
 	vector<string> *expectedAnswers = new vector < string > ;
@@ -43,7 +43,7 @@ void HeroWalkState::handle(Engine* context) {
 }
 
 void HeroWalkState::handleHeroPosition(Hero* hero, Engine* context ) {
-	MapType* maptype = context->getMaps()->at(Map::currentLevel -1).getMapType(hero->getPosX(), hero->getPosY());
+	MapType* maptype = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX(), hero->getPosY());
 	
 	// ooit nog is een visitor pattern hier inbouwen
 	Room* room = dynamic_cast<Room*>(maptype);

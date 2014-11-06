@@ -24,7 +24,7 @@ public:
 
 	}
 
-	std::vector<Map>* generate();
+	std::vector<Map*>* generate();
 
 private:
 	typedef std::mt19937 RngT;
@@ -42,7 +42,7 @@ private:
 	int xStairs;
 	int yStairs;
 
-	std::vector<Map>* listMap = new std::vector<Map>();
+	std::vector<Map*>* listMap = new std::vector<Map*>();
 
 };
 

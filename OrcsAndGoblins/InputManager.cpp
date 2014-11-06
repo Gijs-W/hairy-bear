@@ -73,7 +73,7 @@ InputManager::InputManager(){
 }
 
 InputManager::~InputManager(){
-	delete instance;
+	delete InputManager::instance;
 }
 
 

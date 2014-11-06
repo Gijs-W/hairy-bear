@@ -15,10 +15,10 @@ StairsViewState::~StairsViewState()
 void StairsViewState::handle(Engine* context)
 {
 	Hero* hero = context->getHero();
-	MapType* northMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX(), hero->getPosY() - 1);
-	MapType* southMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX(), hero->getPosY() + 1);
-	MapType* eastMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX() + 1, hero->getPosY());
-	MapType* westMap = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX() - 1, hero->getPosY());
+	MapType* northMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX(), hero->getPosY() - 1);
+	MapType* southMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX(), hero->getPosY() + 1);
+	MapType* eastMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX() + 1, hero->getPosY());
+	MapType* westMap = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX() - 1, hero->getPosY());
 
 
 	vector<string> *expectedAnswers = new vector < string >;
@@ -26,7 +26,7 @@ void StairsViewState::handle(Engine* context)
 	if (isWalkableTile(southMap)) expectedAnswers->push_back("zuid");
 	if (isWalkableTile(eastMap)) expectedAnswers->push_back("oost");
 	if (isWalkableTile(westMap)) expectedAnswers->push_back("west");
-	MapType* curPos = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX(), hero->getPosY());
+	MapType* curPos = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX(), hero->getPosY());
 
 	if (curPos->getType() == Tile::StairsDown || curPos->getType() == Tile::StairsUp || curPos->getType() == Tile::UndiscoveredStairsDown || curPos->getType() == Tile::UndiscoveredStairsUp)
 	{
@@ -77,7 +77,7 @@ void StairsViewState::handle(Engine* context)
 }
 
 void StairsViewState::handleHeroPosition(Hero* hero, Engine* context) {
-	MapType* maptype = context->getMaps()->at(Map::currentLevel - 1).getMapType(hero->getPosX(), hero->getPosY());
+	MapType* maptype = context->getMaps()->at(Map::currentLevel - 1)->getMapType(hero->getPosX(), hero->getPosY());
 
 	// ooit nog is een visitor pattern hier inbouwen
 	Room* room = dynamic_cast<Room*>(maptype);

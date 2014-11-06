@@ -13,7 +13,7 @@ class Engine {
 private:
 	Hero* m_hero;
 	MapGenerator* m_mapgen;
-	std::vector<Map>* m_maps;
+	std::vector<Map*>* m_maps;
 	EngineState* m_state = nullptr;
 	bool m_running = true;
 
@@ -32,7 +32,7 @@ public :
 
 	Hero* getHero();
 	MapGenerator* getMapGen();
-	std::vector<Map>* getMaps();
+	std::vector<Map*>* getMaps();
 };
  
 extern Engine engine;
