@@ -6,9 +6,8 @@
 #include <cassert>
 int Map::currentLevel;
 
-Map::Map()
+Map::Map() : xSize(0), ySize(0), data()
 {
-
 }
 
 Map::Map(int x, int y, int level, Tile value) : xSize(x), ySize(y), data(x * y, value), level(level)
@@ -29,11 +28,47 @@ Map::~Map()
 		delete allEntities->at(i);
 	}
 	delete allEntities;
+	if (rooms->size() > 0)
+	{
+		for (int i = 0; i < rooms->size(); i++)
+		{
+			delete rooms->at(i);
+		}
+	}
 	delete rooms;
+	if (stairs->size() > 0)
+	{
+		for (int i = 0; i < stairs->size(); i++)
+		{
+			delete stairs->at(i);
+		}
+	}
 	delete stairs;
+	if (unuseds->size() > 0)
+	{
+		for (int i = 0; i < unuseds->size(); i++)
+		{
+			delete unuseds->at(i);
+		}
+	}
 	delete unuseds;
+	if (corridors->size() > 0)
+	{
+		for (int i = 0; i < corridors->size(); i++)
+		{
+			delete corridors->at(i);
+		}
+	}
 	delete corridors;
+	if (roomCorridors->size() > 0)
+	{
+		for (int i = 0; i < roomCorridors->size(); i++)
+		{
+			delete roomCorridors->at(i);
+		}
+	}
 	delete roomCorridors;
+
 }
 
 int Map::getXsize()

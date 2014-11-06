@@ -33,6 +33,7 @@ bool MapGenerator::MakeDungeon(Map& map, RngT& rng, int x, int y)
 {
 	if (levels == 1)
 	{
+		//Map map = Map(x, y, Tile::Unused);
 		MakeFirstRoomInDungeon(map, rng, x, y, Tile::Room);
 		map.checkEndRooms();
 		MapType* c = getRandomFromCorridor(map, rng);
@@ -51,27 +52,30 @@ bool MapGenerator::MakeDungeon(Map& map, RngT& rng, int x, int y)
 	if (levels <= maxLevels)
 	{
 		int nextLevel = levels++;
-		Map* nextMap = new Map(x * 2, y * 2, nextLevel, Tile::Unused);
-		Map next = *nextMap;
-		MapType *stairs = MakeStairs(next, rng, xStairs, yStairs, nextLevel - 2, Tile::StairsUp); // case : level 1 = stairs down (to level 2), level 2 = stairs up(to level 1 = nextLevel - 2), stairs down
-		MakeRoom(next, rng, xStairs, yStairs, GetRandomDirection(rng), Tile::UndiscoveredRoom, stairs, nextLevel);
-		next.checkEndRooms();
+		Map nextMap = Map(x * 2, y * 2, nextLevel, Tile::Unused);
+		MapType *stairs = MakeStairs(nextMap, rng, xStairs, yStairs, nextLevel - 2, Tile::StairsUp); // case : level 1 = stairs down (to level 2), level 2 = stairs up(to level 1 = nextLevel - 2), stairs down
+		MakeRoom(nextMap, rng, xStairs, yStairs, GetRandomDirection(rng), Tile::UndiscoveredRoom, stairs, nextLevel);
+		nextMap.checkEndRooms();
 
-		MapType* c = getRandomFromCorridor(next, rng);
+		MapType* c = getRandomFromCorridor(nextMap, rng);
 		if (levels != maxLevels )
 		if (c != nullptr)
 		{
 			if (c->getType() != Tile::StairsDown || c->getType() != Tile::StairsUp)
 			{
-				MakeStairs(next, rng, c->getX(), c->getY(), nextLevel, Tile::StairsDown);
+				MakeStairs(nextMap, rng, c->getX(), c->getY(), nextLevel, Tile::StairsDown);
 				xStairs = c->getX();
 				yStairs = c->getY();
 			}
 		}
-		Map* m = &next;
+
+		//MakeStairs(map, rng, x, y, nextLevel - 2, Tile::StairsUp); // case : level 1 = stairs down (to level 2), level 2 = stairs up(to level 1 = nextLevel - 2), stairs down
+		//MakeStairs(map, rng, x, y, nextLevel, Tile::StairsDown);
+
+		Map* m = &map;
 		listMap->push_back(m);
 
-		MakeDungeon(*m, rng, x, y);
+		MakeDungeon(nextMap, rng, x, y);
 	}
 	return false;
 }
