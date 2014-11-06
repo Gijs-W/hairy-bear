@@ -8,12 +8,14 @@
 #include "HeroWalkState.h"
 #include "MapDrawState.h"
 #include "RoomViewState.h"
+#include "HeroSaveLoad.h"
 class Engine {
 private:
 	Hero* m_hero;
 	MapGenerator* m_mapgen = new MapGenerator;
 	std::vector<Map>* m_maps;
 	EngineState* m_state = nullptr;
+	bool m_running = true;
 
 public :
     Map* map;
@@ -26,6 +28,7 @@ public :
 	void initMap();
 	void loop();
 	void setState(EngineState* state);
+	void save();
 
 	Hero* getHero();
 	MapGenerator* getMapGen();

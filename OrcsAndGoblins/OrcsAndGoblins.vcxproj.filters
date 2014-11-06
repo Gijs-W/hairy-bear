@@ -150,6 +150,9 @@
     <ClInclude Include="Flames.h">
       <Filter>Header Files\Trap</Filter>
     </ClInclude>
+    <ClInclude Include="HeroSaveLoad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -247,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="HeroSaveLoad.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

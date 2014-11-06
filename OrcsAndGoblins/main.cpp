@@ -1,8 +1,14 @@
 #include "stdafx.h"
 #include <windows.h>
+//#include <vld.h>
 #include "Engine.h"
+
+
+
 int main()
 {
+
+	
 	HWND console = GetConsoleWindow();
 	RECT r;
 	GetWindowRect(console, &r); 
@@ -14,5 +20,6 @@ int main()
 	engine->initHero();
 	engine->initMap();
 	engine->loop();
+	
 	return 0;
 }

@@ -30,6 +30,8 @@ void RoomViewState::handle(Engine* context) {
 		expectedAnswers->push_back("inventory");
 	}
 
+	expectedAnswers->push_back("opslaan");
+
 	string action = InputManager::getInstance()->requestInput("Wat doe je?", expectedAnswers);
 	
 	if (action == "vechten") {
@@ -88,6 +90,9 @@ void RoomViewState::handle(Engine* context) {
 	else if (action == "kaart")
 	{
 		context->setState(new MapDrawState(m_room));
+	}
+	else if (action == "opslaan") {
+		context->save();
 	}
 	
 	delete expectedAnswers;

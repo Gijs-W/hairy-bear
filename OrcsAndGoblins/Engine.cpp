@@ -51,21 +51,38 @@ void Engine::initMap()
 }
 
 void Engine::initHero() {
-	string name = InputManager::getInstance()->requestInput("Voer de naam van je hero in:");
 	m_hero = new Hero;
-	m_hero->setName(name);
 
+	HeroSaveLoad* sl = new HeroSaveLoad(m_hero);
+	
+	if (!sl->saveFileExists()) {
+		string name = InputManager::getInstance()->requestInput("Voer de naam van je hero in:");
+
+		m_hero->setName(name);
+		m_hero->setHealth(100);
+	}
+	else {
+		sl->load();
+	}
+
+	delete sl;
 }
 
 void Engine::loop(){
 
 	//InputManager* manager = InputManager::getInstance();
-	while (true)
+	while (m_running)
 	{
 		this->update();
 		m_state->handle(this);
 		this->render();
 	}
+}
+
+void Engine::save() {
+	HeroSaveLoad* sl = new HeroSaveLoad(m_hero);
+	sl->save();
+	delete sl;
 }
 
 Hero* Engine::getHero() {

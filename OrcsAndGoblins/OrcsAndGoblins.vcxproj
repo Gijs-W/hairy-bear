@@ -91,6 +91,7 @@
     <ClInclude Include="FlightState.h" />
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="Hero.h" />
+    <ClInclude Include="HeroSaveLoad.h" />
     <ClInclude Include="HeroWalkState.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InventoryViewState.h" />
@@ -126,6 +127,7 @@
     <ClCompile Include="FlightState.cpp" />
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="Hero.cpp" />
+    <ClCompile Include="HeroSaveLoad.cpp" />
     <ClCompile Include="HeroWalkState.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="InventoryViewState.cpp" />
