@@ -23,51 +23,40 @@ Map::Map(int x, int y, int level, Tile value) : xSize(x), ySize(y), data(x * y, 
 
 Map::~Map()
 {
-	for (int i = 0; i < allEntities->size(); i++)
+	//for (int i = 0; i < allEntities->size(); i++)
+	//{
+	//	delete allEntities->at(i);
+	//}
+	//delete allEntities;
+	//delete rooms;
+	//delete stairs;
+	//delete unuseds;
+	//delete corridors;
+	//delete roomCorridors;
+	//cant do this yet
+	/*for (int i = 0; i < rooms->size(); i++)
 	{
-		delete allEntities->at(i);
-	}
-	delete allEntities;
-	if (rooms->size() > 0)
-	{
-		for (int i = 0; i < rooms->size(); i++)
-		{
-			delete rooms->at(i);
-		}
+	delete rooms->at(i);
 	}
 	delete rooms;
-	if (stairs->size() > 0)
+
+	for (int i = 0; i < stairs->size(); i++)
 	{
-		for (int i = 0; i < stairs->size(); i++)
-		{
-			delete stairs->at(i);
-		}
+	delete stairs->at(i);
 	}
 	delete stairs;
-	if (unuseds->size() > 0)
+
+	for (int i = 0; i < unuseds->size(); i++)
 	{
-		for (int i = 0; i < unuseds->size(); i++)
-		{
-			delete unuseds->at(i);
-		}
+	delete unuseds->at(i);
 	}
 	delete unuseds;
-	if (corridors->size() > 0)
+
+	for (int i = 0; i < corridors->size(); i++)
 	{
-		for (int i = 0; i < corridors->size(); i++)
-		{
-			delete corridors->at(i);
-		}
+	delete corridors->at(i);
 	}
-	delete corridors;
-	if (roomCorridors->size() > 0)
-	{
-		for (int i = 0; i < roomCorridors->size(); i++)
-		{
-			delete roomCorridors->at(i);
-		}
-	}
-	delete roomCorridors;
+	delete corridors;*/
 
 }
 

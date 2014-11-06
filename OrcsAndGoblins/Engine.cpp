@@ -20,9 +20,9 @@ void Engine::render() {
 void Engine::update() {
 	for (int i = 0; i < m_maps->size(); i++)
 	{
-		if (!(m_maps->at(i)->getHero() == m_hero) && m_maps->at(i)->getLevel() == Map::currentLevel)
+		if (!(m_maps->at(i).getHero() == m_hero) && m_maps->at(i).getLevel() == Map::currentLevel)
 		{
-			m_maps->at(i)->setHero(m_hero);
+			m_maps->at(i).setHero(m_hero);
 		}
 	}
 }
@@ -34,12 +34,12 @@ void Engine::initMap()
 
 	for (int i = 0; i < m_maps->size(); i++)
 	{
-		if (!(m_maps->at(i)->getHero() == m_hero) && m_maps->at(i)->getLevel() == Map::currentLevel)
+		if (!(m_maps->at(i).getHero() == m_hero) && m_maps->at(i).getLevel() == Map::currentLevel)
 		{
-			m_maps->at(i)->setHero(m_hero);
-			m_maps->at(i)->getHero()->setPosX((m_maps->at(i)->getXsize()) / 2);
-			m_maps->at(i)->getHero()->setPosY((m_maps->at(i)->getYsize()) / 2);
-			MapType* r = m_maps->at(i)->getMapType((m_maps->at(i)->getXsize()) / 2, (m_maps->at(i)->getYsize()) / 2);
+			m_maps->at(i).setHero(m_hero);
+			m_maps->at(i).getHero()->setPosX((m_maps->at(i).getXsize()) /2);
+			m_maps->at(i).getHero()->setPosY((m_maps->at(i).getYsize()) /2);
+			MapType* r = m_maps->at(i).getMapType((m_maps->at(i).getXsize()) / 2, (m_maps->at(i).getYsize()) / 2);
 			Room* room = dynamic_cast<Room*>(r);
 			if (room)
 				setState(new RoomViewState(room));
@@ -89,7 +89,7 @@ Hero* Engine::getHero() {
 MapGenerator* Engine::getMapGen() {
 	return m_mapgen;
 }
-std::vector<Map*>* Engine::getMaps() {
+std::vector<Map>* Engine::getMaps() {
 	return m_maps;
 }
 

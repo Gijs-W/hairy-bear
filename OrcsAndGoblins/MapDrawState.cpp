@@ -5,11 +5,11 @@ MapDrawState::MapDrawState(Room* room)
 	curRoom = room;
 }
 void MapDrawState::handle(Engine* context) {
-	std::vector<Map*>* maps = context->getMaps();
+	std::vector<Map>* maps = context->getMaps();
 
 	
-	maps->at(Map::currentLevel - 1)->Print();
+		maps->at(Map::currentLevel - 1).Print();
 
 
-	context->setState(new RoomViewState(curRoom));
+		context->setState(new RoomViewState(curRoom));
 }

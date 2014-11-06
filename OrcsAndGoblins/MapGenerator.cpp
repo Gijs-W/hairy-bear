@@ -5,27 +5,15 @@
 
 MapGenerator::~MapGenerator()
 {
-	for (int i = 0; i < listMap->size(); i++)
-	{
-		delete listMap->at(i);
-	}
+	listMap->clear();
 	delete listMap;
 }
 
-void MapGenerator::clearListMap()
+std::vector<Map>* MapGenerator::generate()
 {
-	for (int i = 0; i < listMap->size(); i++)
-	{
-		delete listMap->at(i);
-	}
-}
-
-std::vector<Map*>* MapGenerator::generate()
-{
-	clearListMap();
 	auto rng = RngT(rngSeed);
-	Map* map = new Map(x, y, 1,Tile::Unused);
-	MakeDungeon(*map, rng, x/2, y/2); //x/2 + y/2 for very first level
+	Map map = Map(x, y, 1,Tile::Unused);
+	MakeDungeon(map, rng, x/2, y/2); //x/2 + y/2 for very first level
 	return listMap;
 }
 
@@ -46,9 +34,9 @@ bool MapGenerator::MakeDungeon(Map& map, RngT& rng, int x, int y)
 				yStairs = c->getY();
 			}
 		}
-		Map* m = &map;
-		listMap->push_back(m);
+		listMap->push_back(map);
 	}
+
 	if (levels <= maxLevels)
 	{
 		int nextLevel = levels++;
@@ -72,8 +60,7 @@ bool MapGenerator::MakeDungeon(Map& map, RngT& rng, int x, int y)
 		//MakeStairs(map, rng, x, y, nextLevel - 2, Tile::StairsUp); // case : level 1 = stairs down (to level 2), level 2 = stairs up(to level 1 = nextLevel - 2), stairs down
 		//MakeStairs(map, rng, x, y, nextLevel, Tile::StairsDown);
 
-		Map* m = &map;
-		listMap->push_back(m);
+		listMap->push_back(nextMap);
 
 		MakeDungeon(nextMap, rng, x, y);
 	}
