@@ -21,7 +21,6 @@ class Map
 public:
 	typedef std::mt19937 RngT;
 	Map();
-
 	virtual ~Map();
 	Map(int x, int y, int level, Tile value = Tile::Unused);
 
